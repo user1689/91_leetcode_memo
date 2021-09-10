@@ -1,5 +1,10 @@
+## 题目
 https://leetcode-cn.com/problems/add-to-array-form-of-integer/
 
+## 思路
+
+## 代码
+```python
 class Solution:
     def addToArrayForm(self, num: List[int], k: int) -> List[int]:
 
@@ -45,3 +50,15 @@ class Solution:
         return res[::-1]
 
         # print(res)
+```
+
+## 复杂度分析
+* time max(n, logk)
+* space n
+
+## 相关题目
+1 https://leetcode-cn.com/problems/plus-one/
+2 https://leetcode-cn.com/problems/add-binary/
+3 https://leetcode-cn.com/problems/add-strings/
+4 https://leetcode-cn.com/problems/add-two-numbers/
+5 https://leetcode-cn.com/problems/add-two-numbers-ii/
