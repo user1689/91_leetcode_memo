@@ -1,3 +1,6 @@
+## 题目
+https://leetcode-cn.com/problems/shortest-distance-to-a-character/
+
 ## 思路
 最小数组
 
@@ -31,3 +34,6 @@ class Solution:
 ## 复杂度分析
 * time n n为s长度
 * space n
+
+## 相关题目
+1.（最短距离类型，待补充）
