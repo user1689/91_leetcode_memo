@@ -25,7 +25,7 @@ class Solution:
         head.next = self.swapPairs(newHead.next)
         newHead.next = head
         return newHead
-(!https://github.com/user1689/leetcode_memo/blob/main/91code/images/C07D224B-7AE6-44FB-8EC3-21872DC68284.jpeg)
+        
 #写法二 迭代
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
@@ -57,3 +57,5 @@ class Solution:
 
 ## 相关题目
 1. https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
+
+(!https://github.com/user1689/leetcode_memo/blob/main/91code/images/C07D224B-7AE6-44FB-8EC3-21872DC68284.jpeg)
