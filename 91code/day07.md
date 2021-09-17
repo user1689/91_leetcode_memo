@@ -54,3 +54,5 @@ class Solution:
 ## 相关题目
 1. https://leetcode-cn.com/problems/rotate-array/
 2. https://leetcode-cn.com/problems/split-linked-list-in-parts/
+
+![](https://github.com/user1689/leetcode_memo/blob/main/91code/images/C07D224B-7AE6-44FB-8EC3-21872DC68284.jpeg)
