@@ -79,9 +79,8 @@ class Solution:
 ```
 
 ## 复杂度分析
-* DFS
-* time n
-* space h 树的高度
+* time n（DFS）
+* space h 树的高度（DFS）
 
 ## 相关题目
 1. 待补充
