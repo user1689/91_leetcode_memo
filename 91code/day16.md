@@ -1,7 +1,7 @@
 ## 题目
-
+https://leetcode-cn.com/problems/find-bottom-left-tree-value/
 ## 思路
-
+BFS,DFS
 ## python
 ```python3
 # Definition for a binary tree node.
