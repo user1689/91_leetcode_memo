@@ -22,10 +22,27 @@ We can remove the sublist [6, 4] to get [1, 8, 5] which sums to 14 and is divisi
 
 ## python
 ```python3
-
+class Solution:
+    def deleteSublist(self, nums: List[int], k: int) -> int:
+        total = 0
+        for i in range(0, len(nums)):
+            total += nums[i]
+        
+        target = total % k
+        preSum = 0
+        dic = {0:-1}
+        ans = len(nums)
+        for i in range(0, len(nums)):
+            preSum += nums[i]
+            mod = (preSum) % k
+            dic[mod] = i
+            if (mod + k * int(mod < target) - target) in dic:
+                ans = min(ans, i - dic[(mod + k * int(mod < target) - target)])
+        return -1 if ans == len(nums) else ans
 ```
-
 ## 复杂度分析
-
+* time n 
+* space min(n, k)
 ## 相关题目
-
+1. https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/
+2. https://leetcode-cn.com/problems/continuous-subarray-sum/
