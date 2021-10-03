@@ -44,7 +44,7 @@ class Solution:
 ## 复杂度分析
 * time n 
 * space min(n, k)
-* 
+
 ## 相关题目
 1. https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/
 2. https://leetcode-cn.com/problems/continuous-subarray-sum/
