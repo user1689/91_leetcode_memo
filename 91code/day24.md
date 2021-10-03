@@ -22,7 +22,29 @@ We can remove the sublist [6, 4] to get [1, 8, 5] which sums to 14 and is divisi
 
 ## python
 ```python3
-class Solution:
+class Solution: 
+    # ultimate version
+    def deleteSublist(self, nums: List[int], k: int) -> int:
+        # time n n为数组长度
+        # space min((n, k)) 
+        total = 0
+        for i in range(0, len(nums)):
+            total += nums[i]
+        
+        mod = total % k
+        preSum = 0
+        dic = {0:-1}
+        ans = len(nums)
+        for i in range(0, len(nums)):
+            preSum += nums[i]
+            curmod = (preSum) % k
+            dic[curmod] = i
+            # 这里比较麻烦的是需要处理正负的情况
+            targetmod = (curmod - mod) if curmod >= mod else (curmod + k - mod)
+            if targetmod in dic:
+                ans = min(ans, i - dic[targetmod])
+        return -1 if ans == len(nums) else ans
+        
     def deleteSublist(self, nums: List[int], k: int) -> int:
         total = 0
         for i in range(0, len(nums)):
