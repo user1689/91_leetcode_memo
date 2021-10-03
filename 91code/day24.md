@@ -40,9 +40,11 @@ class Solution:
                 ans = min(ans, i - dic[(mod + k * int(mod < target) - target)])
         return -1 if ans == len(nums) else ans
 ```
+
 ## 复杂度分析
 * time n 
 * space min(n, k)
+* 
 ## 相关题目
 1. https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/
 2. https://leetcode-cn.com/problems/continuous-subarray-sum/
