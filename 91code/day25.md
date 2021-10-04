@@ -49,7 +49,7 @@ class Solution:
 
 ## 时间复杂度
 * time n
-* space n
+* space 1
 
 ## 相关题目
 1. 待补充
