@@ -52,8 +52,8 @@ class Solution:
 * space 1
 
 ## 相关题目
-1.https://leetcode-cn.com/problems/first-bad-version/
-2.https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/
-3.https://leetcode-cn.com/problems/search-insert-position/
-4.https://leetcode-cn.com/problems/guess-number-higher-or-lower/
-5.待补充
+1. https://leetcode-cn.com/problems/first-bad-version/
+2. https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+3. https://leetcode-cn.com/problems/search-insert-position/
+4. https://leetcode-cn.com/problems/guess-number-higher-or-lower/
+5. 待补充
