@@ -12,7 +12,7 @@ class Solution:
         # time n
         # space n
         # 思路一
-        # 模拟+分类讨论https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/
+        # 模拟+分类讨论
         
         startHour, startMinute = map(int, startTime.split(":"))
         endHour, endMinute = map(int, finishTime.split(":"))
