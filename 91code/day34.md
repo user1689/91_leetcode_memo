@@ -59,9 +59,6 @@ class Solution:
         # "00:47"
         # "00:57"
         return max(0, (newEndTime * 15 - newStartTime * 15) // 15)
-
-    
-        
 ```
 ## 时间复杂度
 * time 1
