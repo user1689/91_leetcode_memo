@@ -34,14 +34,38 @@ class Solution:
         return max(res, 0)
         
 class Solution:
+    import math
     def numberOfRounds(self, startTime: str, finishTime: str) -> int:
+        
+        # time 1
+        # space 1
         # 思路二
-        # 转化为分钟来算
+        # 转化成分钟
+        startHour, startMinute = startTime.split(":")
+        endHour, endMinute = finishTime.split(":")
+
+        startTime = int(startHour) * 60 + int(startMinute)
+        endTime = int(endHour) * 60 + int(endMinute)
+        
+        if startTime > endTime:
+            endTime += 60 * 24
+        
+        newStartTime = math.ceil(startTime/15)
+        newEndTime = endTime//15
+        # print(newStartTime)
+        # print(newEndTime)
+
+        # corner case:
+        # "00:47"
+        # "00:57"
+        return max(0, (newEndTime * 15 - newStartTime * 15) // 15)
+
+    
         
 ```
 ## 时间复杂度
-* time n 
-* space n
+* time 1
+* space 1
 
 ## 相关题目
 1. https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/
