@@ -54,8 +54,8 @@ class Solution:
         return res  
 ```
 ## 复杂度分析
-* time n**2
-* space n 
+* time n * m n和m均为常数
+* space 26 
 
 ## 相关题目
 1. 待补充
