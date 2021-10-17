@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/first-bad-version/
 
 ## 思路
-
+二分区间
 
 ## python3
 ```python3
