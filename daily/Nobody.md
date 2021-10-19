@@ -1,4 +1,4 @@
-## 二分分类
+# 二分分类
 
 1. 二分答案
 ```python3
@@ -28,7 +28,7 @@ def binarySearch(nums, target):
     return l
 ```
 
-# 二分寻找最右边的满足条件的值 (存在target的情况下二分右界)
+3. 二分寻找最右边的满足条件的值 (存在target的情况下二分右界)
 ```python3
 def binarySearch(nums, target):
     l, r = 0, len(nums) - 1
@@ -41,7 +41,7 @@ def binarySearch(nums, target):
     return l
 ```
 
-3. 二分寻找最左插入位置
+4. 二分寻找最左插入位置
 ```python3
 def bisect_left(nums, x):
     # 内置 api
@@ -57,7 +57,7 @@ def bisect_left(nums, x):
     return l
 ```
 
-4. 二分寻找最右插入位置
+5. 二分寻找最右插入位置
 ```python3
 def bisect_right(nums, x):
     # 内置 api
