@@ -2,7 +2,7 @@
 https://binarysearch.com/problems/Minimum-Light-Radius
 
 ## 思路
-二分左界 
+二分左界+Greedily select each light placement at current house position + radius, which covers [x, x + 2*r]
 
 ## python3
 ```python3
