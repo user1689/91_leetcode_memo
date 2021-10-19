@@ -1,6 +1,6 @@
 ## 二分分类
 
-# 二分答案
+1. 二分答案
 ```python3
 def binarySearch(nums, target):
     # 左右都闭合的区间 [l, r]
@@ -15,7 +15,7 @@ def binarySearch(nums, target):
     return -1
 ```
 
-# 二分寻找最左边的满足条件的值（存在target的情况下二分左界）
+2. 二分寻找最左边的满足条件的值（存在target的情况下二分左界）
 ```python3
 def binarySearch(nums, target):
     l, r = 0, len(nums) - 1
@@ -41,7 +41,7 @@ def binarySearch(nums, target):
     return l
 ```
 
-# 二分寻找最左插入位置
+3. 二分寻找最左插入位置
 ```python3
 def bisect_left(nums, x):
     # 内置 api
@@ -57,7 +57,7 @@ def bisect_left(nums, x):
     return l
 ```
 
-# 二分寻找最右插入位置
+4. 二分寻找最右插入位置
 ```python3
 def bisect_right(nums, x):
     # 内置 api
