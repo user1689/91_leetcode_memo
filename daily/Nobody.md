@@ -47,10 +47,10 @@ def bisect_left(nums, x):
     # 内置 api
     bisect.bisect_left(nums, x)
     # 手写
-    l, r = 0, len(A) - 1
+    l, r = 0, len(nums) - 1
     while l <= r:
         mid = (l + r) // 2
-        if A[mid] >= x: 
+        if nums[mid] >= x: 
             r = mid - 1
         else: 
             l = mid + 1
@@ -63,10 +63,10 @@ def bisect_right(nums, x):
     # 内置 api
     bisect.bisect_right(nums, x)
     # 手写
-    l, r = 0, len(A) - 1
+    l, r = 0, len(nums) - 1
     while l <= r:
         mid = (l + r) // 2
-        if A[mid] <= x: 
+        if nums[mid] <= x: 
             l = mid + 1
         else: 
             r = mid - 1
