@@ -89,4 +89,5 @@ class Solution:
 * space n
 
 ## 相关题目
-1.https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
+1. https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
+2. https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/
