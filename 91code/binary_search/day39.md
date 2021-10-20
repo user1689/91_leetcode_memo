@@ -10,13 +10,19 @@ import bisect
 class Solution:
     # 思路一
     # 二分
+    # 假设已经遍历过的下标为i, 当前遍历下标为j, 因为我们顺序遍历
+    # 所以对于 nums 中的任意一个nums[j], 此时已经在 tmp 中的元素都是在原数组中位于 nums[j] 之前的元素, 这样就保证了 i < j
+    # 我们再找到 3 * nums[j] 在 tmp 中的插入位置索引, 该位置之后的就是满足题意的元素, 因为这些nums[i]都大于 3 * nums[j]
     def solve(self, nums):
         ans = 0
         tmp = []
-        for a in nums:
-            i = bisect.bisect_right(tmp, a * 3)
+        for j in range(0, len(nums)):
+            # 找到 3 * nums[j] 在 tmp 中的插入位置索引
+            i = bisect.bisect_right(tmp, nums[j] * 3)
+            # 计算该位置之后所有元素并累加入ans
             ans += len(tmp) - i
-            bisect.insort_right(tmp, a)
+            # 按升序插入,待下一个nums[j]对比
+            bisect.insort_right(tmp, nums[j])
         return ans
 
 class Solution:
