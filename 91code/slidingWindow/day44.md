@@ -36,7 +36,7 @@ class Solution:
         S = min(maxPoints - conditionCanChoose + 1, chooseRange)
         for i in range(conditionCanChoose - 1, -1, -1):
             dp[i] = S / float(chooseRange)
-            S += dp[i] - dp[i + chooseRange]983. Minimum Cost For Tickets
+            S += dp[i] - dp[i + chooseRange]
             # tmp = 0
             # for j in range(1, chooseRange+1):
             #     # 从dp[conditionCanChoose - 1]向后算
