@@ -45,7 +45,7 @@ class Solution:
             # dp[i] = tmp/float(chooseRange)
 
         return dp[0]
-``
+```
 
 ## 复杂度分析
 * time min(maxPoints+1, conditionCanChoose + chooseRange)
