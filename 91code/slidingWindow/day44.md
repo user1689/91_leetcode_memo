@@ -53,5 +53,3 @@ class Solution:
 
 ## 相关题目
 1. https://leetcode-cn.com/problems/minimum-cost-for-tickets/
-
-[!img][]
