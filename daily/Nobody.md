@@ -85,6 +85,8 @@ def bisect_left(nums, x):
         else: 
             l = mid + 1
     return l
+# eg: nums = [1,2,5,8], target = 5
+# --> 2
 ```
 
 5. 二分寻找最右插入位置
@@ -101,6 +103,6 @@ def bisect_right(nums, x):
         else: 
             r = mid - 1
     return l
+# eg: nums = [1,2,5,8], target = 5
+# --> 3
 ```
-
-
