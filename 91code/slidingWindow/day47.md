@@ -9,9 +9,9 @@ slidingWindow, Hash+Prefix
 class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         # 思路来自 @yanglr 
-        # 题目要求删掉数组nums的左右两端的元素，并且删掉的元素和为target，也就是留下中间连续的子数组，其和为sum(nums) - target;
+        # 题目要求删掉数组nums的左右两端的元素，并且删掉的元素和为x，也就是留下中间连续的子数组，其和为sum(nums) - x;
         # 题目还让求出最小的操作次数，即删掉的元素个数越少越好，也就是留下的中间子数组的长度越大越好。
-        # 那么问题就转化为了找数组中间和为sum(nums) - target的最长子数组，令该表达式为我们的新目标new_target, 并将原数组的长度记作N。
+        # 那么问题就转化为了找数组中间和为sum(nums) - x的最长子数组，令该表达式为我们的新目标new_target, 并将原数组的长度记作N。
         # https://github.com/yanglr
 
         # time n
