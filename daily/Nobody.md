@@ -106,3 +106,9 @@ def bisect_right(nums, x):
 # eg: nums = [1,2,5,8], target = 5
 # --> 3
 ```
+
+# 滑动窗口
+
+# DFS
+
+# 动态规划
