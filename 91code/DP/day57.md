@@ -1,5 +1,5 @@
 ## 题目
-https://leetcode-cn.com/problems/longest-common-subsequence/submissions/
+https://leetcode-cn.com/problems/longest-common-subsequence
 
 ## 思路
 DP
