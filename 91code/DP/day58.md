@@ -43,7 +43,7 @@ class Solution:
 ```
 
 ## 复杂度分析
-* time n**m
+* time n*m
 * space n*m
 
 ## 相关题目
