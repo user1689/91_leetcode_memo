@@ -2,7 +2,7 @@
 https://leetcode-cn.com/problems/knight-probability-in-chessboard/
 
 ## 思路
-BFS,DFS,DP
+DFS,DP
 
 ## Python3
 ```python3
