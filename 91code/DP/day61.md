@@ -71,7 +71,7 @@ class Solution:
 ```
 
 ## 复杂度分析
-* time n * target n is length of nums
+* time n * target
 * space target
 
 ## 相关题目
