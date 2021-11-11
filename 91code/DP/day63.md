@@ -84,6 +84,10 @@ class Solution:
 
         # 初始化dp数组
         dp[0][0] = 0
+        # 如果我们在 INF 的基础上进行累加的话，常规的语言会将其变成负数最小值。
+        # 也就是在正无穷基础上进行累加，会丢失其正无穷的含义，这与数学上的正无穷概念冲突。
+        # 于是我们有另外一个技巧，不直接使用 INT_MAX 作为 INF，而是使用一个比 INT_MAX 小的较大数来代表 INF
+        # 比如使用 0x3f3f3f3f 作为最大值，这样我们使用 INF 做状态转移的时候，就不需要先判断再使用了
         INF = 0x3f3f3f3f
         for i in range(1, amount + 1):
             dp[0][i] = INF
@@ -131,7 +135,6 @@ class Solution:
         return dp[amount] if dp[amount] != INF else -1
 
 # reference 
-
 # 从数学角度推导「完全背包」与「01 背包」之间的遍历顺序关系
 # https://leetcode-cn.com/problems/perfect-squares/solution/dong-tai-gui-hua-bei-bao-wen-ti-qiang-hu-hcmi/（leetcode）
 # https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247486107&idx=1&sn=e5fa523008fc5588737b7ed801caf4c3&chksm=fd9ca184caeb28926959c0987208a3932ed9c965267ed366b5b82a6fc16d42f1ff40c29db5f1&token=990510480&lang=zh_CN#rd （公众号）
