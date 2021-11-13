@@ -176,7 +176,7 @@ class Solution:
         backtrack([])
         return res
 ```
-3. permutations ii
+2. permutations ii
 ```python3
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
@@ -233,7 +233,7 @@ class Solution:
         return res
 
 ```
-5. combinations
+3. combinations
 ```python3
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
@@ -329,7 +329,7 @@ class Solution:
         dfs(1, [], k)
         return res
 ```
-7. combination sum
+4. combination sum
 ```python3
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
@@ -438,7 +438,7 @@ class Solution:
         return res
 
 ```
-9. combination sum ii
+5. combination sum ii
 ```python3
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
