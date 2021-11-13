@@ -250,18 +250,27 @@ class Solution:
 
         backtrack(1, path)
         return res
-
+       
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        res = []
 
-        def backtrack(startnum, path):
+        # time ? (Cnk * k)
+        # space ? (k)
+        def dfs(startNum, path, k):
+            # 剪枝
+            # 当前可以选择的数量 < 还需要选择的数量
+            if n - startNum + 1 < (k - len(path)):
+                return 
+            
             if len(path) == k:
                 res.append(path)
-            for num in range(startnum, n + 1):
-                backtrack(num + 1, path + [num])
+                return
+                
+            for num in range(startNum, n+1):
+                dfs(num + 1, path + [num], k)
 
-        backtrack(1, [])
+        res = []
+        dfs(1, [], k)
         return res
             
 class Solution:
@@ -307,27 +316,6 @@ class Solution:
         dfs(1, [], k)
         return res
 
-class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
-
-        # time ? (Cnk * k)
-        # space ? (k)
-        def dfs(startNum, path, k):
-            # 剪枝
-            # 当前可以选择的数量 < 还需要选择的数量
-            if n - startNum + 1 < (k - len(path)):
-                return 
-            
-            if len(path) == k:
-                res.append(path)
-                return
-                
-            for num in range(startNum, n+1):
-                dfs(num + 1, path + [num], k)
-
-        res = []
-        dfs(1, [], k)
-        return res
 ```
 4. combination sum
 ```python3
