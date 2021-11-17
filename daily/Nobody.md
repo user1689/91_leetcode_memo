@@ -562,3 +562,149 @@ class Solution:
 ```
 
 # 动态规划
+
+# 基础数据结构
+1. 数组
+
+2. 哈希表
+
+3. 链表
+
+4. 双端队列
+
+5. 优先队列/堆
+```python3
+# while size > 0
+class PriorityQueue:
+
+    def __init__(self):
+        self.heap = []
+        self.size = 0
+    
+    def push(self, val):
+        self.heap.append(val)
+        self.size += 1
+        index = self.size - 1
+        # 上浮操作 不断检查父节点与其值的关系
+        while index > 0:
+            parent = (index - 1) // 2
+            
+            # 插入节点的父节点的值大于插入节点 进行交换
+            if self.heap[parent].val > self.heap[index].val:
+                self.swap(parent, index)
+            else:
+                break
+            # 继续查看 被交换完位置后的插入节点的父节点 直到index=0即到达父节点
+            index = parent
+
+    def pop(self):
+        top = self.heap[0]
+        # 将末尾元素赋值给头元素
+        self.heap[0] = self.heap[-1]
+        # 弹出末尾元素
+        self.heap.pop()
+        self.size -= 1
+        index = 0
+        
+        # 进行下沉操作 不断检查左右子节点和其值的关系
+        while index < self.size:
+            left = (index * 2) + 1
+            right = (index * 2) + 2 
+
+            # 维护左右子节点中最小值的idx
+            small_index = index
+            # 检查left节点的idx是否合法 并且检查值的大小关系
+            if left < self.size and self.heap[left].val < self.heap[small_index].val:
+                small_index = left
+            if right < self.size and self.heap[right].val < self.heap[small_index].val:
+                small_index = right
+            
+            if small_index == index:
+                # 已经是最小堆了
+                break
+
+            self.swap(small_index, index)
+            # 继续查看 被交换完位置后的插入节点的孩子节点 直到index > size
+            index = small_index
+        
+        return top
+            
+    def swap(self, i, j):
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+
+# while size > 1
+class heapq:
+    def __init__(self, descend = False):
+        self.heap = []
+        self.descend = descend
+
+    # @property
+    def size(self):
+        return len(self.heap)
+    
+    def top(self):
+        if self.heap:
+            return self.heap[0]
+        return None
+    
+    def push(self, val):
+        '''
+        存入末尾
+        上浮
+        '''
+        self.heap.append(val)
+        self._sift_up(self.size() - 1)
+    
+    def pop(self):
+        '''
+        存入tmp
+        交换元素
+        删除元素
+        下沉
+        返回tmp
+        '''
+        tmp = self.top()
+        self._swap(0, self.size() - 1)
+        self.heap.pop()
+        self._sift_down(0)
+        return tmp
+    
+
+    def _smaller(self, lst, rst):
+        return lst > rst if self.descend else lst < rst
+
+
+    def _swap(self, idx1, idx2):
+        self.heap[idx1], self.heap[idx2] = self.heap[idx2], self.heap[idx1]
+
+
+    def _sift_up(self, idx):
+        while idx != 0:
+            parentIdx = (idx - 1) // 2
+
+            if self._smaller(self.heap[parentIdx], self.heap[idx]):
+                break
+            
+            self._swap(idx, parentIdx)
+            idx = parentIdx
+
+    def _sift_down(self, idx):
+        while idx*2+1 < self.size():
+            smallestIdx = idx
+            leftIdx = idx*2+1
+            rightIdx = idx*2+2
+
+            if self._smaller(self.heap[leftIdx], self.heap[smallestIdx]):
+                smallestIdx = leftIdx
+            
+            if rightIdx < self.size() and self._smaller(self.heap[rightIdx], self.heap[smallestIdx]):
+                smallestIdx = rightIdx
+            
+            if smallestIdx == idx:
+                break
+
+            self._swap(idx, smallestIdx)
+            idx = smallestIdx
+```
+
+6. 字典树
