@@ -574,7 +574,6 @@ class Solution:
 
 5. 优先队列/堆
 ```python3
-# while size > 0
 class PriorityQueue:
 
     def __init__(self):
@@ -632,7 +631,6 @@ class PriorityQueue:
     def swap(self, i, j):
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
-# while size > 1
 class heapq:
     def __init__(self, descend = False):
         self.heap = []
