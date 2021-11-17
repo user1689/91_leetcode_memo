@@ -574,63 +574,6 @@ class Solution:
 
 5. 优先队列/堆
 ```python3
-class PriorityQueue:
-
-    def __init__(self):
-        self.heap = []
-        self.size = 0
-    
-    def push(self, val):
-        self.heap.append(val)
-        self.size += 1
-        index = self.size - 1
-        # 上浮操作 不断检查父节点与其值的关系
-        while index > 0:
-            parent = (index - 1) // 2
-            
-            # 插入节点的父节点的值大于插入节点 进行交换
-            if self.heap[parent].val > self.heap[index].val:
-                self.swap(parent, index)
-            else:
-                break
-            # 继续查看 被交换完位置后的插入节点的父节点 直到index=0即到达父节点
-            index = parent
-
-    def pop(self):
-        top = self.heap[0]
-        # 将末尾元素赋值给头元素
-        self.heap[0] = self.heap[-1]
-        # 弹出末尾元素
-        self.heap.pop()
-        self.size -= 1
-        index = 0
-        
-        # 进行下沉操作 不断检查左右子节点和其值的关系
-        while index < self.size:
-            left = (index * 2) + 1
-            right = (index * 2) + 2 
-
-            # 维护左右子节点中最小值的idx
-            small_index = index
-            # 检查left节点的idx是否合法 并且检查值的大小关系
-            if left < self.size and self.heap[left].val < self.heap[small_index].val:
-                small_index = left
-            if right < self.size and self.heap[right].val < self.heap[small_index].val:
-                small_index = right
-            
-            if small_index == index:
-                # 已经是最小堆了
-                break
-
-            self.swap(small_index, index)
-            # 继续查看 被交换完位置后的插入节点的孩子节点 直到index > size
-            index = small_index
-        
-        return top
-            
-    def swap(self, i, j):
-        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
-
 class heapq:
     def __init__(self, descend = False):
         self.heap = []
