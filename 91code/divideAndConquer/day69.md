@@ -6,10 +6,37 @@ divideAndConquer, Heap
 
 ## python3
 ```python3
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
 
-
-
-
+        def divide(low, high):
+            if low == high:
+                return lists[low]
+            mid = low + (high - low) // 2
+            leftNode = divide(low, mid)
+            rightNode = divide(mid + 1, high)
+            return merge(leftNode, rightNode)
+        
+        def merge(leftNode, rightNode):
+            if not leftNode:
+                return rightNode
+            if not rightNode:
+                return leftNode
+            if leftNode.val < rightNode.val:
+                leftNode.next = merge(leftNode.next, rightNode)
+                return leftNode
+            else:
+                rightNode.next = merge(leftNode, rightNode.next)
+                return rightNode
+        
+        if not lists:
+            return None
+        return divide(0, len(lists) - 1)
 
 # Definition for singly-linked list.
 # class ListNode:
