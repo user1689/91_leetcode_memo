@@ -48,8 +48,8 @@ class Solution:
                 if graph[i][j]:
                     uf.merge(i, j)
         
-        print(uf.parent)
-        print(uf.size)
+        # print(uf.parent)
+        # print(uf.size)
         initial.sort()        
         max_size, index, fi = 0, -1, []
         # using fi store father
