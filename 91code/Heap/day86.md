@@ -99,7 +99,7 @@ class Solution:
 
 ## 复杂度分析
 * time nlogn
-* space logn
+* space n
 
 ## 相关题目
 1. 待补充
