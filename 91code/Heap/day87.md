@@ -1,6 +1,8 @@
 ## 题目
+https://leetcode-cn.com/problems/merge-k-sorted-lists/
 
 ## 思路
+Heap
 
 ## python3
 ```python3
