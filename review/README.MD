@@ -106,3 +106,6 @@ tricky:
 
 all True 
 any False
+
+
+https://www.linkedin.com/in/adam-lin/
