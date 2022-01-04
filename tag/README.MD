@@ -5,3 +5,4 @@
 # AlamedaReaserch tags
 # Coinbase tags
 # RogerLeoTank tags
+# FTX tags
