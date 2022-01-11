@@ -26,8 +26,7 @@ class Solution:
         s = '1'
         for i in range(2, n + 1):
             s = getNext(s)
-        return s
-        
+        return s     
 ```
 
 ## 复杂度分析
