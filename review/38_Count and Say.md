@@ -38,7 +38,7 @@ class Solution:
 
 class Solution:
     def countAndSay(self, n: int) -> str:
-        # time n
+        # time n * m
         # space 1
         # twoPointers
         last = "1"
@@ -62,7 +62,7 @@ class Solution:
 ```
 
 ## 复杂度分析
-* time n
+* time n * m  (m is the max length of the string programs generate)
 * space 1
 
 ## 相关题目
