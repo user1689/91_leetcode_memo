@@ -35,6 +35,30 @@ class Solution:
         for i in range(2, n+1):
             s = getNext(s)
         return s    
+
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        # time n
+        # space 1
+        # twoPointers
+        last = "1"
+        # iterate n - 1 times
+        for _ in range(n - 1):
+            tmp = ""
+            i = 0
+            # iterate begin
+            while(i < len(last)):
+                start = i
+                j = i + 1
+                while (j < len(last) and last[start] == last[j]):
+                    j += 1
+                finish = j - 1
+                num = finish - start + 1
+                tmp += str(num)
+                tmp += str(last[start])
+                i = j
+            last = tmp
+        return last
 ```
 
 ## 复杂度分析
