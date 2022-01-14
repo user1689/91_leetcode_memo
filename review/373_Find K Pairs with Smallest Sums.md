@@ -23,12 +23,8 @@ class Solution:
             _, tmp1, tmp2 = heapq.heappop(heap)
             res.append([tmp1, tmp2])
             k -= 1
-        return res
-            
-            
+        return res          
 ```
-
-
 ## 复杂度分析
 * time 
 * space
