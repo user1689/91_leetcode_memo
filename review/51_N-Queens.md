@@ -44,6 +44,41 @@ class Solution:
         column = set()
         dfs(0)
         return solution
+        
+
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+            
+        res = []
+        board = [['.' for _ in range(n)] for _ in range(n)]
+        # select from row
+        def backTrack(row, n):
+            # base
+            if (row == n):
+                tmp_res = []
+                for tmp in board:
+                    tmp_str = ''.join(tmp)
+                    tmp_res.append(tmp_str)
+                res.append(tmp_res)
+            
+            for col in range(n):
+                if (col in cols or (row + col) in diagonal1 or (row - col) in diagonal2):
+                    continue
+                cols.add(col)
+                diagonal1.add(row + col)
+                diagonal2.add(row - col)
+                board[row][col] = 'Q'
+                backTrack(row + 1, n)
+                board[row][col] = '.'
+                cols.remove(col)
+                diagonal1.remove(row + col)
+                diagonal2.remove(row - col)
+        
+        cols = set()
+        diagonal1 = set()
+        diagonal2 = set()
+        backTrack(0, n)
+        return res
 ```
 
 ## 复杂度分析
