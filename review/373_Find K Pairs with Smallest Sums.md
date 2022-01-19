@@ -25,7 +25,6 @@ class Solution:
             k -= 1
         return res
 
-```python3
 class Solution:
     def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
         # time k**2 * klogk
@@ -43,7 +42,6 @@ class Solution:
             res.append([tmp1, tmp2])
             k -= 1
         return res          
-```
 ```
 
 ## 复杂度分析
