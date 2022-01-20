@@ -38,13 +38,46 @@ class Solution:
         dfs(0, 0, 1, 0)
         return res
 
-
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         
+        n = len(matrix)
+        m = len(matrix[0])
+        if n == 0 and m == 0:
+            return []
+        top = 0
+        bottom = n - 1
+        left = 0 
+        right = m - 1
+        res = []
+        while(True):
+            for i in range(left, right + 1):
+                res.append(matrix[top][i])
+            top += 1
+            if (top > bottom):
+                break
+
+            for j in range(top, bottom + 1):
+                res.append(matrix[j][right])
+            right -= 1
+            if (right < left):
+                break
+            for k in range(right, left - 1, -1):
+                res.append(matrix[bottom][k])
+            bottom -= 1
+            if (bottom < top):
+                break
+            for l in range(bottom, top - 1, -1):
+                res.append(matrix[l][left])
+            left += 1
+            if (left > right):
+                break
+        return res
 ```
 
 ## 复杂度分析
-* time
-* space 
+* time n * m
+* space n
 
 ## 相关题目
-1. 
+1. https://leetcode-cn.com/problems/spiral-matrix-ii/
