@@ -56,7 +56,6 @@ class Solution:
             queue.append(node2.left)
         else:
             return True
-           
 ```
 
 ## 复杂度分析
