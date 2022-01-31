@@ -48,6 +48,38 @@ class Solution:
 #         self.right = right
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+
+        def dfs(root, total):
+            if (not root):
+                return False
+            if (not root.left and not root.right):
+                if (total + root.val == targetSum):
+                    return True
+                else:
+                    return False
+
+            # 在写树时候判断值最好只判断当前root的
+            # 如果要判断子节点需要先判断是否存在 有点像链表的 判断
+            valid = False
+            if (root.left):
+                valid = dfs(root.left, total + root.val) 
+            if (root.right):
+                valid = valid or dfs(root.right, total + root.val)
+
+            return valid
+
+        if not root:
+            return False
+        return dfs(root, 0)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         
         def dfs(root, targetSum):
             if not root:
