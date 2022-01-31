@@ -38,3 +38,4 @@ class Solution:
 
 ## 相关题目
 1. https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/
+2. https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/
