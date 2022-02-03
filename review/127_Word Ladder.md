@@ -33,7 +33,7 @@ class Solution:
 ```
 
 ## 复杂度分析
-* time O(n^3)
+* time O(n * c * 26) c is the length of words
 * space O(n)
 
 ## 相关题目
