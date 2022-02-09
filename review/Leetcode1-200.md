@@ -595,7 +595,7 @@ class Solution {
         while (left <= right && s.charAt(left) == ' ') {
             ++left;
         }
-				//remove right space
+      	//remove right space
         while (left <= right && s.charAt(right) == ' ') {
             --right;
         }
@@ -1059,6 +1059,297 @@ class BSTIterator {
  * int param_1 = obj.next();
  * boolean param_2 = obj.hasNext();
  */
+```
+
+
+
+#### [179. Largest Number](https://leetcode-cn.com/problems/largest-number/)
+
+```java
+class Solution {
+    public String largestNumber(int[] nums) {
+        // nums -> string
+        String[] ss = new String[nums.length];
+        for (int i = 0; i < nums.length; i ++) {
+            ss[i] = "" + nums[i];
+        }
+        // comparator
+        Arrays.sort(ss, (a, b) -> {
+            String sa = a + b;
+            String sb = b + a;
+            return sb.compareTo(sa);
+        });
+        // convert String[] to String
+        StringBuilder sb = new StringBuilder();
+        for (String s : ss) {
+            sb.append(s);
+        }
+        return sb.charAt(0) != '0' ? sb.toString() : "0";
+    }
+}
+```
+
+
+
+#### [187. Repeated DNA Sequences](https://leetcode-cn.com/problems/repeated-dna-sequences/)
+
+```java
+class Solution {
+    public List<String> findRepeatedDnaSequences(String s) {
+        int n = 10;
+        int lengthS = s.length();
+        List<String> res = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < lengthS - n + 1; i++) {
+            String tmp = s.substring(i, i+n);
+            if (map.getOrDefault(tmp, 0) == 1) {
+                res.add(tmp);
+            }
+            map.put(tmp, map.getOrDefault(tmp, 0) + 1); 
+        }
+        return res;
+    }
+}
+```
+
+
+
+#### [189. Rotate Array](https://leetcode-cn.com/problems/rotate-array/)
+
+```java
+//bruteForce
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        int[] newArr = new int[n];
+        for (int i = 0; i < n; ++i) {
+            newArr[(i + k) % n] = nums[i];
+        }
+        System.arraycopy(newArr, 0, nums, 0, n);
+    }
+}
+//tricky
+class Solution {
+    public void rotate(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    public void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            int tmp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = tmp;
+            left += 1;
+            right -= 1;
+        }
+    }   
+}
+```
+
+
+
+#### [190. Reverse Bits](https://leetcode-cn.com/problems/reverse-bits/)
+
+```java
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        int rev = 0;
+        for (int i = 0; i < 32; i++) {
+            rev = rev << 1;
+            rev = rev | (n & 1);
+            n >>>= 1;
+        }
+        return rev;
+    }
+}
+```
+
+
+
+#### [191. Number of 1 Bits](https://leetcode-cn.com/problems/number-of-1-bits/)
+
+```java
+public class Solution {
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
+        int cnt = 0;
+        while (n != 0) {
+            n = n & (n - 1);
+            cnt += 1;
+        }
+        return cnt;
+    }
+}
+```
+
+
+
+#### [198. House Robber](https://leetcode-cn.com/problems/house-robber/)
+
+```java
+class Solution {
+    public int rob(int[] nums) {
+        // state define: dp[i]represents the max money can get when reach idx i
+        // state transfer: dp[i-2]+nums[i] or dp[i-1]
+        // base case: dp[0]=nums[0] dp[1]=max(dp[0], dp[1])
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[n - 1] = nums[n - 1];
+        dp[n - 2] = Math.max(nums[n - 2], nums[n - 1]);
+        for (int i = n - 3; i >= 0; i--) {
+            dp[i] = Math.max(dp[i + 1], nums[i] + dp[i + 2]);
+        }
+        return dp[0];
+    }
+}
+```
+
+
+
+#### [199. Binary Tree Right Side View](https://leetcode-cn.com/problems/binary-tree-right-side-view/)
+
+```java
+// Definition for a binary tree node.
+public class TreeNode {
+  	int val;
+  	TreeNode left;
+  	TreeNode right;	
+  	TreeNode() {}
+  	TreeNode(int val) {
+      	this.val = val;
+    }
+  	TreeNode(int val, TreeNode left, TreeNode right) {
+      	this.val = val;
+      	this.left =left;
+      	this.right = right;
+    }
+}
+//bfs
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        Deque<TreeNode> deque = new LinkedList<>();
+        List<Integer> res = new ArrayList<>();
+        deque.addLast(root);
+        while (deque.size() > 0) {
+            int size = deque.size();
+            Stack<TreeNode> stack = new Stack<>();
+            for (int i = 0; i < size; i ++) {
+                TreeNode node = deque.removeFirst();
+                stack.push(node);
+                if (node.left != null) {
+                    deque.addLast(node.left);
+                }
+                if (node.right != null) {
+                    deque.addLast(node.right);
+                }
+            }
+            res.add(stack.peek().val);
+        }
+        return res;
+    }
+}
+//dfs
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        dfs(root, res, 0);
+        return res;
+    }
+
+    public void dfs(TreeNode root, List<Integer> res, int depth) {
+        if (root == null) {
+            return;
+        }
+        if (res.size() == depth) {
+            res.add(root.val);
+        }
+        dfs(root.right, res, depth + 1);
+        dfs(root.left, res, depth + 1);
+    }
+}
+//dfs_iteration
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        Deque<TreeNode> nodeStack = new ArrayDeque<TreeNode>();
+        Deque<Integer> depthStack = new ArrayDeque<Integer>();
+        Map<Integer, Integer> map = new HashMap<>();
+        nodeStack.push(root);
+        depthStack.push(0);
+        int max_depth = 0;
+        while (!nodeStack.isEmpty()) {
+            int depth = depthStack.pop();
+            TreeNode node = nodeStack.pop();
+            if (node != null) {
+                max_depth = Math.max(max_depth, depth);
+
+                if (!map.containsKey(depth)) {
+                    map.put(depth, node.val);
+                }
+                if (node.left != null) {
+                    depthStack.push(depth + 1);
+                    nodeStack.push(node.left);
+                }
+                if (node.right != null) {
+                    depthStack.push(depth + 1);
+                    nodeStack.push(node.right);
+                }
+            }
+        }
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i <= max_depth; i+=1) {
+            list.add(map.get(i));
+        } 
+        return list;
+
+    }
+}
+```
+
+
+
+#### [200. Number of Islands](https://leetcode-cn.com/problems/number-of-islands/)
+
+```java
+class Solution {
+    public int numIslands(char[][] grid) {
+        int row = grid.length;
+        int col = grid[0].length;
+        int cnt = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (grid[i][j] == '1') {
+                    dfs(grid, i, j, row, col);
+                    cnt += 1;
+                } 
+            }
+        }
+        return cnt;
+    }
+    public void dfs(char[][] grid, int x, int y, int row, int col) {
+        // base
+        if (x < 0 || x >= row || y < 0 || y >= col || grid[x][y] == '0') {
+            return;
+        }
+        grid[x][y] = '0';
+        dfs(grid, x + 1, y, row, col);
+        dfs(grid, x, y + 1, row, col);
+        dfs(grid, x - 1, y, row, col);
+        dfs(grid, x, y - 1, row, col);
+    }
+}
 ```
 
 
