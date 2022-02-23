@@ -49,6 +49,8 @@ class Solution:
         if (root):
             res.append(root.data)
             leftBoundary(root.left)
+            # corner case:
+            # [1]
             bottomBoundary(root.left)
             bottomBoundary(root.right)
             rightBoundary(root.right)
