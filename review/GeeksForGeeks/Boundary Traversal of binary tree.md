@@ -2,6 +2,7 @@
 https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1/#
 
 ## 思路
+DFS, preOrder
 
 ## python3
 ```python3
@@ -15,10 +16,10 @@ class Solution:
                 return 
             
             if (root.left):
-                print(root.data)
+                res.append(root.data)
                 leftBoundary(root.left)
             elif (root.right):
-                print(root.data)
+                res.append(root.data)
                 leftBoundary(root.right)
             
         def rightBoundary(root):
@@ -29,34 +30,27 @@ class Solution:
             
             if (root.right):
                 rightBoundary(root.right)
-                print(root.data)
+                res.append(root.data)
             elif (root.left):
                 rightBoundary(root.left)
-                print(root.data)
+                res.append(root.data)
             
-        # def bottomBoundary(root):
-        #     if (not root):
-        #         return 
-        #     if (not root.left and not root.right):
-        #         print(root.data)
+        def bottomBoundary(root):
+            if (not root):
+                return 
+            if (not root.left and not root.right):
+                res.append(root.data)
             
-        #     bottomBoundary(root.left)
-        #     bottomBoundary(root.right)
+            bottomBoundary(root.left)
+            bottomBoundary(root.right)
+ 
         
-        def printLeaves(root):
-            if(root):
-                printLeaves(root.left)
-                 
-                # Print it if it is a leaf node
-                if root.left is None and root.right is None:
-                    print(root.data),
-         
-                printLeaves(root.right)
-        
+        res = []
         if (root):
-            print(root.data)
+            res.append(root.data)
             leftBoundary(root.left)
-            printLeaves(root.left)
-            printLeaves(root.right)
+            bottomBoundary(root.left)
+            bottomBoundary(root.right)
             rightBoundary(root.right)
+        return res        
 ```
