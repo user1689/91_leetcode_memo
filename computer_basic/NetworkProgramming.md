@@ -179,13 +179,12 @@ if __name__ == '__main__':
 		
 		Recap
 		udp(client/server)  tcp(client)       tcp(server)
-		socket							socket						socket
-		bind 								connect						bind
-		sendto/recvfrom			send/recv					listen
-		close								close							accept
-																					recv/send
-																					close 
-																					
+		socket		      socket		socket
+		bind 			connect		bind
+		sendto/recvfrom	     send/recv		listen
+		close		       close	   accept recv/send
+							close 
+																	
 		服务器不绑客户端连不上
 		为了保证客户端不会因为端口有问题 客户端一般不绑端口
 		tcp是面向链接的通信 connect方法 类似电话
