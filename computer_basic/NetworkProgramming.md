@@ -386,6 +386,45 @@ if __name__ == '__main__':
 		  线程不能独立执行     进程可以独立执行
 	          必须存在在进程中
 		
+		
+		进程之间通信
+		form multiprocessing import Queue
+		q = Queue(3) # 新建队列
+		q.put("3") # 放数据
+		q.get() # 取数据
+		q.full() # 判断是否为满
+		q.empty() # 判断是否为空
+		用Queue可以解耦(耦合性)
+		局限性在于只能用于一台电脑之间的进程进行通信
+		
+		进程池
+		创建进程池
+		from multiprocessing import Pool
+		import os, time, random
+		
+		po = Pool(3)
+		# 每次都会用空闲出来的子进程去调用目标
+		# Pool().apply_async(需要调用的函数, 需要传递的参数)
+		Pool().apply_async(worker, (i, ))
+		po.close()
+		# 通过threading创建的进程 主进程会等待子进程结束以后再结束
+		# 通过multiprocessing创建的进程 主进程不会等待子进程结束后再结束
+		po.join() # 可以使主进程等待子进程结束以后再结束
+		
+		vim 命令模式下 V选中 + < + . 重复上次的命令 可以多次对其
+		linux gedit 用编辑器打开文件
+		ipython import os + os.__file__ 直接找到python包地址
+		
+		os.listdir(文件路径)
+		linux 删一个目录 rm 文件名 -r
+		
+'''
+
+'''
+		协程
+		
+		迭代器
+		
 '''
 
 ```
