@@ -28,8 +28,8 @@
 
 '''
 		编码
-    1- encode编码成字节或者二进制类型, 默认参数就是encoding="utf-8"
-    2- decode解码为原始数据
+		1- encode编码成字节或者二进制类型, 默认参数就是encoding="utf-8"
+		2- decode解码为原始数据
 '''
 a_str = "我是Python"
 b_str = a_str.encode(encoding="utf-8")
