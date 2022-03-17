@@ -1185,13 +1185,13 @@ main()
 
 
 
-TCP/IP传输协议示意图 ![TCP/IP传输协议示意图](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/TCP/IP传输协议示意图.png)
+TCP/IP传输协议示意图 ![TCP/IP传输协议示意图](https://github.com/user1689/91_leetcode_memo/blob/main/computer_basic/img/OSI%E5%8D%8F%E8%AE%AE%E5%92%8CTCP:IP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8C%BA%E5%88%AB.png)
 
-OSI协议和TCP/IP协议的区别 ![OSI协议和TCP/IP协议的区别](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/OSI协议和TCP/IP协议的区别.png)
+OSI协议和TCP/IP协议的区别 ![OSI协议和TCP/IP协议的区别](https://github.com/user1689/91_leetcode_memo/blob/main/computer_basic/img/OSI%E5%8D%8F%E8%AE%AE%E5%92%8CTCP:IP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8C%BA%E5%88%AB.png)
 
-简单网络通信 ![简单网络通信](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/简单网络通信.png)
+简单网络通信 ![简单网络通信](https://github.com/user1689/91_leetcode_memo/blob/main/computer_basic/img/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1.png)
 
-复杂网络通信 ![复杂网络通信](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/复杂网络通信.png)
+复杂网络通信 ![复杂网络通信](https://github.com/user1689/91_leetcode_memo/blob/main/computer_basic/img/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1.png)
 
 
 
@@ -1219,7 +1219,7 @@ OSI协议和TCP/IP协议的区别 ![OSI协议和TCP/IP协议的区别](https://g
   
 ```
 
-GIL简介  ![GIL简介](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/GIL简介.png)
+GIL简介  ![GIL简介](https://github.com/user1689/91_leetcode_memo/blob/main/computer_basic/img/GIL%E7%AE%80%E4%BB%8B.png)
 
 
 
@@ -1236,7 +1236,7 @@ GIL简介  ![GIL简介](https://github.com/user1689/91_leetcode_memo/tree/main/c
 	'''
 ```
 
-深浅拷贝  ![深浅拷贝](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/深浅拷贝.png)
+深浅拷贝  ![深浅拷贝](https://github.com/user1689/91_leetcode_memo/blob/main/computer_basic/img/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D.png)
 
 
 
