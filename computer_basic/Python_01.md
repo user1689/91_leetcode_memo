@@ -1185,13 +1185,13 @@ main()
 
 
 
-TCP/IP传输协议示意图 ![截屏2022-03-13 下午4.11.05](./img/截屏2022-03-13 下午4.11.05.png)
+TCP/IP传输协议示意图 ![TCP/IP传输协议示意图](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/TCP/IP传输协议示意图.png)
 
-OSI协议和TCP/IP协议 的区别<img src="./img/截屏2022-03-13 下午4.09.37.png" alt="截屏2022-03-13 下午4.09.37" style="zoom:50%;" />
+OSI协议和TCP/IP协议的区别 ![OSI协议和TCP/IP协议的区别](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/OSI协议和TCP/IP协议的区别.png)
 
-简单网络通信![截屏2022-03-14 下午7.40.32](./img/截屏2022-03-14 下午7.40.32.png)
+简单网络通信 ![简单网络通信](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/简单网络通信.png)
 
-复杂网络通信![截屏2022-03-14 下午7.58.07](./img/截屏2022-03-14 下午7.58.07.png)
+复杂网络通信 ![复杂网络通信](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/复杂网络通信.png)
 
 
 
@@ -1219,9 +1219,7 @@ OSI协议和TCP/IP协议 的区别<img src="./img/截屏2022-03-13 下午4.09.37
   
 ```
 
-GIL简介
-
-![截屏2022-03-14 下午8.34.54](./img/截屏2022-03-14 下午8.34.54.png)
+GIL简介  ![GIL简介](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/GIL简介.png)
 
 
 
@@ -1238,9 +1236,7 @@ GIL简介
 	'''
 ```
 
-深浅拷贝
-
-![截屏2022-03-14 下午10.46.29](/Users/llc/Desktop/22Spring/img/截屏2022-03-14 下午10.46.29.png)
+深浅拷贝  ![深浅拷贝](https://github.com/user1689/91_leetcode_memo/tree/main/computer_basic/img/深浅拷贝.png)
 
 
 
