@@ -20,3 +20,6 @@ class Solution:
 #  0 0 0 0 1 1 1
 #  0 0 1 1
 ```
+## 相关题目
+1. https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
+2. https://leetcode-cn.com/problems/remove-element/
