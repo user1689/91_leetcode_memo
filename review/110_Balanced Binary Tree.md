@@ -15,6 +15,36 @@ DFS
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
         '''
+        time O(N)
+        space O(N)
+        '''
+
+        def dfs(root):
+            if (not root):
+                return 0
+
+            leftDepth = dfs(root.left)
+            rightDepth = dfs(root.right)
+
+            if (abs(leftDepth - rightDepth) > 1):
+                return float('inf')
+
+            return max(leftDepth, rightDepth) + 1
+
+        if (not root):
+            return True
+        
+        return True if dfs(root) != float('inf') else False
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        '''
         第一种普通解法是nlogn
         第二种optimal是logn就可以完成
         差别在第二种解法在递归到最底部求解高度的同时计算左右子树的高度差
