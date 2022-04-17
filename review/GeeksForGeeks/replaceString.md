@@ -1,11 +1,11 @@
 ## 题目
-Given an original string input, and two strings S and T, from left to right replace all
-occurrences of S in input with T.
-Assumptions
-• input, S and T are not null, S is not empty string
-Examples
-• input = "appledogapple", S = "apple", T = "car, input becomes "catdogcat"
-• input = "laicode", S = "code", T = "offer", input becomes "laioffer"
+Given an original string input, and two strings S and T, from left to right replace all  
+occurrences of S in input with T.  
+Assumptions  
+• input, S and T are not null, S is not empty string  
+Examples  
+• input = "appledogapple", S = "apple", T = "car, input becomes "catdogcat"  
+• input = "laicode", S = "code", T = "offer", input becomes "laioffer"  
 
 ## python3
 ```python3
