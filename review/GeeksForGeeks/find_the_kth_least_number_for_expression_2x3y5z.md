@@ -9,10 +9,10 @@ Examples
 • the 3rd smallest is3*5A2*7 = 525  
 • the 5th smallest is3A3*5*7 = 945  
 
-# reference
-https://stackoverflow.com/questions/7215315/find-the-kth-least-number-for-expression-2x3y5z
-
 ## python3
 ```python3
 
 ```
+
+## reference
+https://stackoverflow.com/questions/7215315/find-the-kth-least-number-for-expression-2x3y5z
