@@ -64,3 +64,6 @@ class Solution:
 
 ## 相关题目
 1.https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/
+
+## reference
+https://blog.csdn.net/dgq8211/article/details/7534776
