@@ -6,7 +6,7 @@
 
 #### Nine_Box
 
-- 给一串字符，"abcdefgabc"，然后用手机九宫格打出。手机九宫格可以是任何字母组合，唯一要求是每个键至少有两个字母，最多三个字母。换句话说，这里的键位不一定是我们常见的2=abc，3=def等等，可以是1=agq，2=bhj...任何顺序都可以。要求找出能打出输入字符串的最少按键次数。
+- 给一串字符，"abcdefgabc"，然后用自定义的手机九宫格打出。自定义的手机九宫格可以是任何字母组合，唯一要求是每个键至少有两个字母，最多三个字母。换句话说，这里的键位不一定是我们常见的2=abc，3=def等等，可以是1=agq，2=bhj...任何顺序都可以。要求找出能打出输入字符串的最少按键次数。
 
 ```python
 '''
@@ -100,16 +100,16 @@ class solution:
             #     seen.add(arr[j])
             #     j += 1
             
-	                
-            seen.add(arr[j])
-            j += 1
-	    
             if ((j - i) == k):
                 ans = max(ans, prefix_sum[j] - prefix_sum[i])
                 if (i < n):
                     seen.remove(arr[i])
                     i += 1
                     
+            
+            seen.add(arr[j])
+            j += 1
+        
         if (ans != -1):
             tmp = sum(seen)
             ans = max(ans, tmp)    
@@ -127,7 +127,33 @@ k = 6
 obj.max_average_stock_price(arr, k)
 ```
 
+#### Find_Data_Locations
 
+- 给了三个list, initinal locations, moveFrom, moveTo, 求从moveFrom 到 moveTo 后， return 各个物品的位置 从小到大
+
+```python
+class solution:
+    def find_data_locations(self, locations, movedFrom, movedTo):
+        map = dict()
+        for ll in locations:
+            map[ll] = ll
+        n = len(movedFrom)
+        for i in range(0, n):
+            if (movedFrom[i] != movedTo[i]):
+                map[movedTo[i]] = movedTo[i]
+                del map[movedFrom[i]]
+        ans = []
+        tmp = sorted(map.items(), key=lambda x: x[1], reverse=False)
+        for key, val in tmp:
+            ans.append(val)
+        return ans
+      
+obj = solution()
+locations = [1,7,6,8]
+movedFrom = [1,7,2]
+movedTo = [2,9,5]
+obj.find_data_locations(locations, movedFrom, movedTo)
+```
 
 
 
