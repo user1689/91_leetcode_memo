@@ -100,16 +100,15 @@ class solution:
             #     seen.add(arr[j])
             #     j += 1
             
+            seen.add(arr[j])
+            j += 1
+            
             if ((j - i) == k):
                 ans = max(ans, prefix_sum[j] - prefix_sum[i])
                 if (i < n):
                     seen.remove(arr[i])
                     i += 1
                     
-            
-            seen.add(arr[j])
-            j += 1
-        
         if (ans != -1):
             tmp = sum(seen)
             ans = max(ans, tmp)    
@@ -123,7 +122,7 @@ arr3 = [1,1,1,1,1,1,1,1]
 arr4 = [1]
 arr5 = []
 arr6 = [0]
-k = 6
+k = 3
 obj.max_average_stock_price(arr, k)
 ```
 
