@@ -100,16 +100,16 @@ class solution:
             #     seen.add(arr[j])
             #     j += 1
             
+	                
+            seen.add(arr[j])
+            j += 1
+	    
             if ((j - i) == k):
                 ans = max(ans, prefix_sum[j] - prefix_sum[i])
                 if (i < n):
                     seen.remove(arr[i])
                     i += 1
                     
-            
-            seen.add(arr[j])
-            j += 1
-        
         if (ans != -1):
             tmp = sum(seen)
             ans = max(ans, tmp)    
