@@ -131,6 +131,14 @@ obj.max_average_stock_price(arr, k)
 - 给了三个list, initinal locations, moveFrom, moveTo, 求从moveFrom 到 moveTo 后， return 各个物品的位置 从小到大
 
 ```python
+def dataMovement(data, moveFrom, moveTo):
+  	s = set(data)
+    for destination, origination in zip(moveFrom, moveTo):
+      	s.remove(moveFrom)
+        s.add(moveTo)
+    return sorted(s)
+  	# return list(s).sort()
+
 class solution:
     def find_data_locations(self, locations, movedFrom, movedTo):
         map = dict()
@@ -154,7 +162,198 @@ movedTo = [2,9,5]
 obj.find_data_locations(locations, movedFrom, movedTo)
 ```
 
+#### Searchword & Resultword
 
+- 一个searchWord和一个resultWord，问最少给searchWord末尾添加几个字符，可以让resultWord成为它的一个subsequence。举个栗子：search给Word=“armaze”，resultWord=”amazon”，则应该返回2（添加on）。
+
+```python
+class solution:
+    def searchWordAndResultWord(self, searchWord, resultWord) -> int:
+        '''
+        "z"
+        "acdefg"
+        
+        "a"
+        "acdefg"
+        
+        "azpxpzle"
+        "applepie"
+        
+        "bgagnsxfadhnfaf"
+        "bananapie"
+        '''
+        i = 0
+        j = 0
+        n = len(searchWord)
+        m = len(resultWord)
+        while (i < n and j < m):
+            if (searchWord[i] == resultWord[j]):
+                i += 1
+                j += 1
+            i += 1
+        return m - j
+obj = solution()
+searchWord = "a"
+resultWord = "acdefg"
+obj.searchWordAndResultWord(searchWord, resultWord)
+```
+
+#### User_System_Design
+
+- 写一个简单的api，有三个功能 register，log in，log out。register的时候要输入name和password，如果这个用户已经register过了要返回username already exists，没有的话返回registered successfully；log in时也要name和password，如果该name并没有register或者已经logged in，或者password错误，要返回log in unsuccessful，如果都满足就返回logged in successfully；最后是log out，也是很直观的逻辑，正常的话返回成功，没有regist‍‌‍‌‍‍‌‌‌‍‍‍‍‍‌‍‌er或者没有log in的name要返回log out失败。
+
+```python
+class solution:
+    def userSystem(self, operations) -> None:
+        map = dict()
+        ans = []
+        for opt in operations:
+            tmp = opt.split(' ')
+            action, username = tmp[0], tmp[1]
+            password = tmp[2] if len(tmp) == 3 else ""
+
+            if (action == "register"):
+                if (username in map.keys()):
+                    ans.appned("Registered Unsuccessful")
+                else:
+                    if (password == ""):
+                        ans.append("Registered Unsuccessful")
+                    else:
+                        map[username] = [password, 0]
+                        ans.append("Registered Successfully")
+            elif (action == "login"):
+                if (username not in map.keys()):
+                    ans.append("Login Unsuccessful")
+                else:
+                    if (password != ""):
+                        status = map[username][1]
+                        if (status == 1 or(map[username][0] != password)):
+                            ans.append("Login Unsuccessful")
+                        else:
+                            map[username][1] = 1
+                            ans.append("Logged In Successfully")
+                    else:
+                        ans.append("Login Unsuccessful")
+            elif (action == "logout"):
+                if (username not in map.keys()):
+                    ans.append("Logged out Unsuccessful")
+                else:
+                    status = map[username][1]
+                    if (status == 0):
+                        ans.append("Logged out Unsuccessful")
+                    else:
+                      	map[username][1] = 0
+                        ans.append("Logged out Successfully")
+        return ans
+
+obj = solution()
+operations = [
+    "register david david123",
+    "register adam 1Adam1",
+     "login david david123",
+    "logout david",
+    "login david david123",
+    "login adam 1adam1",
+    "logout david",
+    "logout adam",
+    "logout apple",
+    "register banana",
+    "logout zzz zzz",
+    "register aa",
+    "login zvvv",
+    "register aa z",
+    "login aa"
+]
+res = obj.userSystem(operations)
+print(res)
+```
+
+####  Target_Words_Combined
+
+- 给两个字符串s和t，求问使用s所有的字母最多能够重组出几个t。举个栗子：s=“mononom”，t=“mon”，则答案是2。
+
+```python
+class solution:
+    def Target_Words_Combined(self, s:str, t:str) -> int:
+        cnt1 = [0] * 26
+        cnt2 = [0] * 26
+        for i in range(len(s)):
+            cnt1[ord(s[i]) - ord('a')] += 1
+        for j in range(len(t)):
+            cnt2[ord(t[j]) - ord('a')] += 1
+        ans = 0x3f3f3f3f
+        for k in range(26):
+            if (cnt2[k] != 0 and cnt1[k] != 0):
+                ans = min(ans, cnt1[k] // cnt2[k])
+        return ans
+obj = solution()
+s = "mononom"
+t = "mon"
+obj.Target_Words_Combined(s, t)
+```
+
+#### Gray_Graph
+
+```python
+def getMaximunGery(grid):
+    prfSumRow = [0]*len(grid)
+    prfSumCol = [0]*len(grid[0])
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            if grid[r][c]=="1":  
+               prfSumRow[r]+=1 
+               prfSumCol[c]+=1
+            else:                
+               prfSumRow[r]-=1
+               prfSumCol[c]-=1
+            
+    return max(prfSumRow)+max(prfSumCol)
+
+class solution:
+    def grey(self, matrix):
+        row = len(matrix)
+        col = len(matrix[0])
+        grey_row = [0 for _ in range(row)]
+        grey_col = [0 for _ in range(col)]
+        for i in range(row):
+            tmp = 0
+            for char in matrix[i]:
+                if (char == '1'):
+                    tmp += 1
+                else:
+                    tmp -= 1
+            grey_row[i] = tmp
+        
+        for j in range(col):   
+            tmp = 0
+            for i in range(row):
+                if(matrix[i][j] == '1'):
+                    tmp += 1
+                else:
+                    tmp -= 1
+            grey_col[j] = tmp
+
+        ans = -0x3f3f3f3f
+        for i in range(row):
+            for j in range(col):
+                ans = max(grey_row[i]+grey_col[j], ans)
+        return ans
+
+obj = solution()
+matrix = [
+    "1101",
+    "0101",
+    "1010"
+    ]
+matrix2 = [
+    "1001",
+    "0111",
+    "0001",
+	]
+obj.grey(matrix)
+# reference 
+# https://www.1point3acres.com/bbs/thread-844232-1-1.html
+```
 
 
 
