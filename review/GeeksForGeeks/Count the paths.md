@@ -1,6 +1,9 @@
 ## 题目
 https://practice.geeksforgeeks.org/problems/count-the-paths4332/1/#
 
+## 思路
+m, n一个级别 无向图 
+
 ## python3
 ```python3
 class Solution:
