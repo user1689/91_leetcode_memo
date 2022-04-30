@@ -355,6 +355,104 @@ obj.grey(matrix)
 # https://www.1point3acres.com/bbs/thread-844232-1-1.html
 ```
 
+#### Change_Of_Temperature
+
+- 计算Change of temperature eg: 假设三天的气温是[6, -2, 5] 第一天 max([6],[6+(-2)+5]) = max(6,9) = 9, 第二天 max([6+(-2)],[(-2)+5]]) = max(4,3) = 4, 第三天 max([6-2+5],[5]) = max(9,5) = 9, 最后return max(9,4,9)=9
+
+```python
+'''
+
+6 -2 5
+
+max(6, 6-2+5)
+max(6-2, -2+5)
+max(6-2+5, 5)
+
+preSum
+ [6,-2,5]
+[0,6,4,9]
+
+'''
+
+class solution:
+    def changeOfTemperature(self, arr):
+        n = len(arr)
+        preSum = [0] * (n + 1)
+        for i in range(0, n):
+            preSum[i + 1] = arr[i] + preSum[i]
+        ans = -0x3f3f3f
+        for i in range(1, n+1):
+            ans = max(preSum[i] - preSum[0], preSum[n] - preSum[i - 1])
+        return ans
+      	
+obj = solution()
+arr = [6,-2,5]
+obj.changeOfTemperature(arr)
+```
+
+#### Find_minimum
+
+- 给一组数组, 删掉k个连续元素, 问剩下最小的和是多少? eg: arr = [7, 3, 6, 1], k = 2, result = 7
+
+```python
+'''
+    [7, 3, 6, 1]
+  [0,7,10,16,17]
+   l    r
+'''
+class solution:
+    def maxDelete(self, k, arr):
+        n = len(arr)
+        preSum = [0] * (n + 1)
+        ss = 0
+        for i in range(0, n):
+            preSum[i + 1] = preSum[i] + arr[i]
+            ss += arr[i]
+        
+        left = 0 
+        right = k 
+        res = 0x3f3f3f3f
+        while (right < n+1):
+            total = preSum[right] - preSum[left]
+            res = min(res, ss - total)
+            left += 1
+            right += 1
+        return res
+        
+obj = solution()
+obj.maxDelete(2, [7,3,6,1])
+```
+
+#### Maximum_Element_After_Decrementing_And_Rearranging
+
+- 给一组数组, 删掉k个连续元素, 问剩下最小的和是多少?  eg: arr = [7, 3, 6, 1], k = 2, result = 7
+
+```python
+class Solution:
+    def maximumElementAfterDecrementingAndRearranging(self, arr: List[int]) -> int:
+        '''
+        [2,2,1,2,1]
+         i j
+
+        +- null/1 0/000 min/max odd/even repeated order/permutation
+        '''
+        
+        arr.sort()
+        if (arr[0] != 1):
+            arr[0] = 1
+        if (len(arr) < 2):
+            return arr[0]
+        n = len(arr)
+        i = 0
+        j = 1
+        while (j < n):
+            if (abs(arr[j] - arr[i]) >= 1):
+                arr[j] = arr[i] + 1
+            i += 1
+            j += 1
+        return max(arr)
+```
+
 
 
 ### OA2
@@ -364,3 +462,44 @@ obj.grey(matrix)
 
 
 ### VO
+
+
+
+
+
+### Projects
+
+- Around: GCP and React based Social NetworkAround: GCP and React based Social Network
+
+  Feb 2022 - Present
+
+  - ● Built a social network application based on React JS.
+    ● Designed the features of posting and browsing according to classification.
+    ● Handled users posts in Go and deployed to Google Cloud.
+    ● Used token-based registration/login/logout flow with React Router v4 and server-side user authentication with JWT to improve the authentication.
+    ● Used Elasticsearch for users to search and list posts.
+
+- Twitch: A Personalized Twitch Resources Recommendation EngineTwitch: A Personalized Twitch Resources Recommendation Engine
+
+  Dec 2021 - Jan 2022
+
+  - [Show project](http://3.21.248.215/)
+
+  - ● Built a full-stack web application for users to search streams, video and clips from Twitch resources and get recommendations.
+    ● Designed the function of registration, login, logout and favorite.
+    ● Constructed the project based on Spring MVC to dispatch servlets.
+    ● Tested by Postman and handled the HTTP requests and responses by RESTful APIs.
+    ● Fetched web resources by Twitch API and stored personal data in MySQL on Amazon RDS by Hibernate.
+    ● Implemented resources recommendation by content-based algorithm.
+    ● Built a web page with React and Ant Design to make it user friendly.
+    ● Deployed the project on AWS EC2.
+
+    ● Built a full-stack web application for users to search streams, video and clips from Twitch resources and get recommendations. 
+
+- Experimental Design of Network SwitchExperimental Design of Network Switch
+
+  Jan 2021 - Feb 2021
+
+  - ● Designed IP address and built communication with multiple routing devices according to requirement in GNS3 environment.
+    ● Modified network configuration and tested RIP and OSPF on Linux environment.
+    ● Used Wireshark to capture and analyze packets.
