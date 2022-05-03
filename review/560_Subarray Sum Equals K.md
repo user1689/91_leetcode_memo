@@ -38,6 +38,36 @@ class Solution:
                 cnt += dic[preSum[i] - k] 
             dic[preSum[i]] = dic.get(preSum[i], 0) + 1
         return cnt
+        
+        
+        '''
+        
+        [1,1,1], k = 2
+        [1,2,3]
+        
+        
+        [1,1,1,-1,-1,-1,1,1,1], k = 2
+        [1,2,3, 2, 1, 0,1,2,3]
+        
+        
+        pre = 3
+        pre - tmp = k -> pre - k = tmp
+        if (pre - k in map):
+            cnt += map[pre - k]
+        
+        [1,3,6]
+        
+        '''
+        map = dict()
+        map[0] = 1
+        pre = 0
+        cnt = 0
+        for num in nums:
+            pre += num
+            if (pre - k in map.keys()):
+                cnt += map[pre - k]
+            map[pre] = map.get(pre, 0) + 1
+        return cnt
 ```
 
 ## 时间复杂度
