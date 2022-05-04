@@ -30,10 +30,10 @@ node3 = TreeNode(10)
 node4 = TreeNode(1)
 node5 = TreeNode(2)
 
-# node1.left = node2
-# node2.left = node3
-# node3.right = node4
-# node4.left = node5
+node1.left = node2
+node2.left = node3
+node3.right = node4
+node4.left = node5
 
 obj = Solution()
 obj.preorderTraversal(node1, 12)
