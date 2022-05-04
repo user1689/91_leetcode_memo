@@ -34,10 +34,10 @@ class solution:
     def find_ocean_view(self, arr:List[int]) -> List[int]:
         stack = []
         for i in range(0, len(arr)):
-            while (stack and stack[-1] < arr[i]):
+            while (stack and arr[stack[-1]] < arr[i]):
                 stack.pop()
             stack.append(i)
-    return stack
+        return stack
             
 ```
 
