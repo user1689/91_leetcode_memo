@@ -3,6 +3,7 @@ https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
 
 ## 思路
 imitation
+注意需要先用nxt指向cur.next否则cur.next=cur.next.next时断开就无法找到cur.next了
 
 ## python3
 ```python3
