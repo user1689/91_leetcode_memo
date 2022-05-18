@@ -73,6 +73,74 @@ class LRUCache:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
+
+class Node:
+    def __init__(self, key, val, prev=None, next=None):
+        self.key = key
+        self.val = val
+        self.prev = prev
+        self.next = next
+        
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.size = 0
+        self.capacity = capacity
+        self.head = Node(-1,-1)
+        self.tail = Node(-1,-1)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.map = dict()
+
+    def get(self, key: int) -> int:
+        if (key in self.map.keys()):
+            node = self.map[key]
+            self.moveToHead(node)
+            return node.val 
+        else:
+            return -1
+        
+    def put(self, key: int, value: int) -> None:
+        if (key in self.map.keys()):
+            node = self.map[key]
+            node.val = value
+            self.moveToHead(node)
+        else:
+            node = Node(key, value)
+            self.addToHead(node)
+            self.map[key] = node
+            self.size += 1
+            if self.size > self.capacity:
+                removed = self.removeTail()
+                kk = removed.key
+                del self.map[kk]
+                self.size -= 1
+    
+    def moveToHead(self, node):
+        self.removeNode(node)
+        self.addToHead(node)
+    
+    def removeNode(self, node):
+        node.prev.next = node.next
+        node.next.prev = node.prev
+    
+    def addToHead(self, node):
+        node.prev = self.head
+        node.next = self.head.next
+        node.next.prev = node
+        self.head.next = node
+    
+    def removeTail(self):
+        rr = self.tail.prev
+        rr.prev.next = rr.next
+        rr.next.prev = rr.prev
+        return rr
+    
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
 ```
 
 ## 复杂度分析
