@@ -63,8 +63,8 @@ class Solution:
             
 ```
 ## 复杂度分析
-time: O(N)
-space: O(N）
+time: O(N)  
+space: O(N） 
 
 ## 相关题目
 1. 待补充
