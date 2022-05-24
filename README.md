@@ -1,4 +1,4 @@
-# algo_study
+# algorithm_memo
 
 - Review >> (update constantly)    
 only contains part of leetcode questions  
