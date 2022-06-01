@@ -1,7 +1,7 @@
 ## 题目
 https://www.codingninjas.com/codestudio/problems/count-distinct-subarrays-with-at-most-k-odd-elements_1069335?leftPanelTab=0
 
-## 思路
+## Java
 ```java
 import java.util.HashSet;
 public class Solution {
