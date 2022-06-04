@@ -192,6 +192,7 @@ class solution:
                 j += 1
             i += 1
         return m - j
+      
 obj = solution()
 searchWord = "a"
 resultWord = "acdefg"
@@ -390,7 +391,7 @@ arr = [6,-2,5]
 obj.changeOfTemperature(arr)
 ```
 
-#### Find_minimum
+#### Find_Minimum
 
 - 给一组数组, 删掉k个连续元素, 问剩下最小的和是多少? eg: arr = [7, 3, 6, 1], k = 2, result = 7
 
@@ -425,7 +426,7 @@ obj.maxDelete(2, [7,3,6,1])
 
 #### Maximum_Element_After_Decrementing_And_Rearranging
 
-- 给一组数组, 删掉k个连续元素, 问剩下最小的和是多少?  eg: arr = [7, 3, 6, 1], k = 2, result = 7
+- 1开始的数组，后面每两个相邻数字直接差距不能>1，可以重新调整顺序和减少到>=1,问数组的最后一个数字可能的最大值
 
 ```python
 class Solution:
@@ -452,6 +453,398 @@ class Solution:
             j += 1
         return max(arr)
 ```
+
+#### Merge_Interval
+
+- 最少merge几个区间, 返回的是int：Input: [[1,2],[2,3],[3,5],[4,5]]Output: 1，[4， 5] 被merge掉了， 所以是结果是1
+
+```python
+class Solution:
+  	def mergeInterval(self, interval):
+        '''
+        排序以后 最早的结束的会最先出现 
+          假设当前区间结束点为x 那么它留下的空白区域为[x:] 此时有另一个区间结束点为y并且x<y 那么它留下的空白区间为[y:]
+          由于x<y 所以[y:] < [x:]
+          留下的空间越大 那么删除就越少 因此可以贪心的得到结果
+        '''
+      	intervals.sort(key=lambda x: x[1])
+        i = 0
+        j = 0
+        n = len(intervals)
+        # 统计保留下来的区间
+        cnt = 0
+        while (i < n):
+            j = i + 1
+            while (j < n and intervals[j][0] < intervals[i][1]):
+                j += 1
+            cnt += 1    
+            i = j
+        return n - cnt
+```
+
+#### Min_Net_Stack
+
+```python
+class Solution:
+    def minNetStack(self, arr):
+        def get(l, r):
+            return preSum[r] - preSum[l - 1] 
+        
+        n = len(arr)
+        preSum = [0] * (n + 1)
+        for i in range(0, n):
+            preSum[i + 1] = arr[i] + preSum[i]
+        
+        res = 0
+        tmp = float('inf')
+        for i in range(0, n-1):
+            leftVal = get(1,i+1) 
+            rightVal = get(i+2,n) 
+            
+            leftVal //= (i + 1)
+            rightVal //= (n - (i+1))
+             
+            if (abs(leftVal - rightVal) < tmp):
+                tmp = abs(leftVal - rightVal)
+                res = i+1
+        return res
+        
+
+obj = Solution()
+# arr = [1,3,2,3]
+arr = [1,1,1,1,1,1]
+obj.minNetStack(arr)
+```
+
+#### Number_of_Distinct_Subarrays_With_At_Most_K_Odd_Numbers
+
+```python
+class Solution:
+  def NumOfDisSubWithAtMostKOddNum(arr, k):
+    	cnt = 0
+      seen = set()
+      n = len(arr)
+      for i in range(0, n):
+       	countOdds = 0
+        tmp = []
+        for j in range(i, n):
+          if(arr[j] % 2 == 1):
+            countOdds += 1
+          if (countOdds > k):
+            break
+          tmp.append(arr[j])
+          tmpKey = tuple(tmp)
+          if (tmpKey not in seen):
+            seen.add(tmpKey)
+            cnt += 1
+       return cnt
+    
+obj = Solution()
+arr = [3,2,3]
+k = 1
+obj.NumOfDisSubWithAtMostKOddNum(arr, k)
+```
+
+#### Common_Prefix
+
+```python
+class solution:
+  def commonPrefix(self, inputs:str):
+    l, r = 0, 0
+    i = 1
+    n = len(inputs)
+    z = [0] * n
+    for i in range(1, n):
+        # i没有超过r
+        if (z[i - l] < r - i + 1):
+            z[i] = z[i - l]
+        else:
+        		# i超过了r
+            z[i] = max(r - i + 1, 0)
+            while (i + z[i] < n and inputs[z[i]] == inputs[i + z[i]]):
+                z[i] += 1
+            l = i
+            r = i + z[i] - 1
+    return sum(z) + n
+
+obj = solution()
+res = obj.commonPrefix("abcabcd")
+```
+
+#### Find_Max_In_K_Size_Subarray_With_No_Repeated
+
+```python
+class solution:
+    def findMaxInKSizeSubarrayWithNoRepeated(self, arr, k: int):
+        '''
+        [1,2,7,7,4,3,6], k = 3
+        i   j
+        '''
+        n = len(arr)
+        preSum =[0] * (n+1)
+        ll = 0
+        rr = 0
+        seen = set()
+        tmp = []
+        
+        def get(l, r):
+            return preSum[r] - preSum[l - 1]
+        
+        while (rr < n):
+            preSum[rr+1] = preSum[rr] + arr[rr]
+        
+            while (ll < rr and arr[rr] in seen):
+                seen.remove(arr[ll])
+                ll += 1
+            
+            if (rr - ll + 1 == k):
+                tmp.append([ll, rr])
+                
+            seen.add(arr[rr])
+            rr += 1
+        
+        res = 0
+        for x, y in tmp:
+            res = max(res, get(x+1, y+1))
+        return res
+
+obj = solution()
+arr = [1,2,7,7,4,3,6]
+k = 3
+obj.findMaxInKSizeSubarrayWithNoRepeated(arr, k)
+```
+
+#### Pascal_Triangle
+
+```python
+from typing import List;
+class solution:
+    def pascalTriangle(self, arr: List[int]) -> str:
+        n = len(arr)
+        for i in range(0, n-2):
+            for j in range(0, n - i - 1):
+                arr[j] = (arr[j] + arr[j + 1]) % 10
+        
+        return str(arr[0]) + str(arr[1])
+
+obj = solution()
+arr = [4,5,6,7,9]
+res = obj.pascalTriangle(arr)
+print(res)
+```
+
+#### Prime_Movie_Award
+
+```python
+class solution:
+    def primeMovieAward(self, arr, k):
+        arr.sort()
+        i = 0
+        j = 0
+        n = len(arr)
+        cnt = 0
+
+        while (j < n):
+            while (j < n and abs(arr[j] - arr[i]) <= k):
+                j += 1
+            cnt += 1
+            i = j
+        return cnt
+
+obj = solution()
+arr = [1, 5, 4, 6, 8, 9, 2, 1, 1, 2]
+k = 3
+res = obj.primeMovieAward(arr, k)
+print(res)
+```
+
+#### Max_Consecutive_Number
+
+```python
+from typing import List
+
+class solution:
+    def longestOnes(self, arr: List[int], k: int) -> int:
+        ll = 0
+        rr = 0
+        n = len(arr)
+        res = 0
+        while (rr < n):
+            if (arr[rr] == 0):
+                k -= 1
+            while (k < 0):
+                if (arr[ll] == 0):
+                    k += 1
+                ll += 1
+            res = max(res, rr - ll + 1)
+            rr += 1
+        return res
+    
+obj = solution()
+arr = [1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1]
+k = 2
+res = obj.longestOnes(arr, 2)
+print(res)
+
+```
+
+#### Count_How_Many_Sub_Sequence_101_Or_010_In_The_String
+
+- Given:A binary string that represents pages of a book (0011010). 1 represents a bookmarked page and 0 represents non-bookmarked flag.
+
+  Find the number of ways to choose 3 pages (i, j, k) such that i < j < k and consecutive pages in the selection is not same.
+  Valid selecitons: "010" and "101"
+  Invalid selections: All other selections (110, 000, 111, etc.)
+
+  
+
+  Test Case 1:
+  book: "00101"
+
+  
+
+  There are total 3 ways to choose pages which are "010", "010" and "101". So, the answer is 3.
+
+```python
+class solution:
+    def countSubsequence101010(self, s:str) -> int:
+        def dfs(i, j, s, tmp):
+            if ((i < 0 and j < 0) or j < 0):
+                return 1
+            if (i < 0):
+                return 0
+            
+            res = 0
+            if (s[i] == tmp[j]):
+                res += dfs(i-1, j-1, s, tmp)
+                res += dfs(i-1, j, s, tmp)
+            else:
+                res += dfs(i-1, j, s, tmp)
+                
+            return res
+        
+        s1 = "101"
+        s2 = "010"
+        len1 = len(s1)
+        len2 = len(s2)
+        n = len(s)
+        return dfs(n - 1, len1 - 1, s, s1) + dfs(n - 1, len2 - 1, s, s2)
+
+obj = solution()
+res = obj.countSubsequence101010("01001")
+print(res)
+```
+
+#### Count_AZ
+
+- 一个string，可以在任意位置添加一个字符，最多只能添加一个字符(A或Z)，问最多能组成多少个AZ，不能改变顺序
+
+```python
+import bisect
+from typing import List
+
+
+class solution:
+    def countAZ(self, s:str) -> int:
+        '''
+        要么A加在最前面
+        要么Z加在最后面
+
+        A + frq(substring)
+        frq(substring) + Z
+        '''
+
+        n = len(s)
+        posA = []
+        posZ = []
+        for i in range(0, n):
+            if (s[i] == 'A'):
+                posA.append(i)
+            elif (s[i] == 'Z'):
+                posZ.append(i)
+        print(posA)
+        print(posZ)
+
+        cnt = 0
+        for idx in posA:
+            tmp = bisect.bisect_left(posZ, idx)
+            cnt += (len(posZ) - tmp)
+        
+        return cnt + len(posA) if len(posA) > len(posZ) else cnt + len(posZ)
+
+obj = solution()
+res = obj.countAZ("BAZAZ")
+print(res)
+```
+
+#### [The_kth_Factor_Of_N](https://leetcode.cn/problems/the-kth-factor-of-n/)
+
+```python
+class Solution:
+    def kthFactor(self, n: int, k: int) -> int:
+        
+        cnt = 0
+        i = 1
+        while (i <= n // i):
+            if (n % i == 0):
+                k -= 1
+                if (k == 0):
+                    return i
+            i += 1
+            
+        # 注意，此时 i * i > n，所以要 i --
+        i -= 1
+        # 第二趟反向遍历，对 i 的初始值，还需要根据是否 i * i == n 做判断，避免重复
+        if (i == n // i):
+            i -= 1
+            
+        while (i > 0):
+            if (n % i == 0):
+                k -= 1
+                if (k == 0):
+                    return n // i
+            i -= 1
+        return -1
+```
+
+#### Router
+
+- 给一个buildingCount array ，每个element代表一个building，上面的value代表这个building的人数 [1，4，2，3，2]就是第一个building有一个人，第二个有4个人，第三个有两个人... 
+
+  第二个array 叫 routerLocation， 每个element代表router在哪个building，eg: [3，1] 就是说第一个router在building3，第二个在building1
+
+  第三个array叫router Range 里面代表那个router能辐射的范围。[2，3] 第一个router能辐射前后两个building，如果它位于building3，那么就是1，2，3，4，5 都可以覆盖到。
+
+  条件是，每个building被‍‌‍‍‍‌‌‌‌‌‌‍‍‌‍‍‌‌‌‍辐射的router的数量必须大于等于人数才能算能serve。问有几个building能被serve
+
+```python
+from typing import List
+class solution:
+    def router(self, buildingCount: List[int], routerLocation: List[int], routerRange: List[int]) -> int:
+        
+        n = len(buildingCount)
+        tmp = [0] * (n+2)
+        for i in range(0, len(routerLocation)):
+            tmp[max(1, routerLocation[i] - routerRange[i])] += 1
+            tmp[min(n+1, routerLocation[i] + routerRange[i] + 1)] -= 1
+        # print(tmp)
+        total = 0
+        cnt = 0
+        for i in range(1, len(buildingCount)):
+            total += tmp[i]
+            if (total >= buildingCount[i-1]):
+                cnt += 1            
+        return cnt
+
+obj = solution()
+a = [1,4,2,3,2]
+b = [3,1]
+c = [2,3]
+res = obj.router(a, b, c) 
+print(res)
+```
+
+
 
 
 
@@ -493,8 +886,6 @@ class Solution:
     ● Implemented resources recommendation by content-based algorithm.
     ● Built a web page with React and Ant Design to make it user friendly.
     ● Deployed the project on AWS EC2.
-
-    ● Built a full-stack web application for users to search streams, video and clips from Twitch resources and get recommendations. 
 
 - Experimental Design of Network SwitchExperimental Design of Network Switch
 
