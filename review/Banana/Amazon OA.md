@@ -295,6 +295,13 @@ obj.Target_Words_Combined(s, t)
 
 #### Gray_Graph
 
+- You are given a black & white image in form of m*n pixel matrix grid.
+  - if pixel[ i ] [ j ] = 0 then pixel is black
+  - if pixel[ i ] [ j ]  = 1 then pixel is white 
+
+- Calculate maximum greyness of image.
+  Where greyness of a pixel[ i ] [ j ] = `(number of 1s in ith row + number of 1s in jth column) - (number of 0s in ith row + number of 0s in jth column)`
+
 ```python
 def getMaximunGery(grid):
     prfSumRow = [0]*len(grid)
@@ -482,11 +489,11 @@ class Solution:
         return n - cnt
 ```
 
-#### Min_Net_Stack
+#### Min_Net_Stock
 
 ```python
 class Solution:
-    def minNetStack(self, arr):
+    def minNetStock(self, arr):
         def get(l, r):
             return preSum[r] - preSum[l - 1] 
         
@@ -513,7 +520,7 @@ class Solution:
 obj = Solution()
 # arr = [1,3,2,3]
 arr = [1,1,1,1,1,1]
-obj.minNetStack(arr)
+obj.minNetStock(arr)
 ```
 
 #### Number_of_Distinct_Subarrays_With_At_Most_K_Odd_Numbers
@@ -696,12 +703,8 @@ print(res)
   Valid selecitons: "010" and "101"
   Invalid selections: All other selections (110, 000, 111, etc.)
 
-  
-
-  Test Case 1:
+- Test Case 1:
   book: "00101"
-
-  
 
   There are total 3 ways to choose pages which are "010", "010" and "101". So, the answer is 3.
 
@@ -841,6 +844,300 @@ a = [1,4,2,3,2]
 b = [3,1]
 c = [2,3]
 res = obj.router(a, b, c) 
+print(res)
+```
+
+#### Demolition_Robot
+
+- 给二位数组，存放0，1，和9。其中 0 是坑，1是路，9是目标切目标只有一个。我们在左上角出发，目‍‌‍‍‍‌‌‌‌‌‌‍‍‌‍‍‌‌‌‍标是最短路线找到9并且清除它。其中坑不能走，路可以走
+
+```python
+from collections import deque
+from typing import List
+
+class solution:
+    def demolitionRobot(self, arr: List[List[int]]) -> int:
+        
+        row = len(arr)
+        col = len(arr[0])
+        q = deque()
+        q.append((0,0))
+        visited = [[-1 for _ in range(col)] for _ in range(row)]
+        visited[0][0] = 1
+        step = 0
+
+        while (q):
+            size = len(q)
+            for _ in range(size):
+                x, y = q.popleft()
+                if (arr[x][y] == 9):
+                    return step
+                for new_x, new_y in [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]:
+                    if (0<=new_x<row and 0<=new_y<col and arr[new_x][new_y] != 0 and visited[new_x][new_y] == -1):
+                        visited[new_x][new_y] = 1
+                        q.append((new_x, new_y)) 
+            step += 1
+            
+        return -1
+
+obj = solution()
+arr = [
+
+    [1,1,1],
+    [1,1,0],
+    [1,0,9]
+
+]
+res = obj.demolitionRobot(arr)
+print(res)
+
+
+```
+
+#### mini_Moves
+
+- Given an array of binary digits, 0 and 1, sort the array so that all zeros are at one end and all ones are at the other. Which end does not matter. To sort the array, swap any two adjacent elements. Determine the minimum number of swaps to sort the array.
+
+  Example
+  arr = [0, 1, 0, 1]
+  With 1 move, switching elements 1 and 2 yields [0, 0, 1, 1], a sorted array
+
+```python
+from typing import List
+
+class solution:
+    def miniMoves(self, arr: List[int]) -> int:
+        res = float('inf')
+        count1 = 0
+        dis = 0
+        for num in arr:
+            if (num == 1):
+                count1 += 1
+            if (num == 0):
+                dis += count1
+        res = min(res, dis)
+        count0 = 0
+        dis = 0
+        for num in arr:
+            if (num == 0):
+                count0 += 1
+            if (num == 1):
+                dis += count0
+        return min(res, dis)
+    
+obj = solution()
+arr = [1, 1, 1, 1, 0, 1, 0, 1]
+arr2 = [1, 1, 1, 1, 0, 0, 0, 0]
+arr3 = [1, 0, 1, 0]
+res = obj.miniMoves(arr3)
+print(res) 
+```
+
+#### Password_Strength
+
+```python
+class solution:
+    def passwordStrength(self, password: str) -> int:
+
+        cnt1 = 0
+        cnt2 = 0
+        map = {'a', 'e', 'i', 'o', 'u'}
+        ans = 0
+        n = len(password)
+        i = 0
+        while (i < n):
+            # 如果是元音
+            if (password[i] in map):
+                # 此时辅音数量大于0
+                if cnt2 > 0:
+                    # 在此切割
+                    ans += 1
+                    cnt1 = 0
+                    cnt2 = 0
+                else:
+                    cnt1 += 1
+            else:
+                # 此时是辅音
+                if cnt1 > 0:
+                    ans += 1
+                    cnt1 = 0
+                    cnt2 = 0
+                else:
+                    cnt2 += 1
+
+            i += 1
+
+        return ans
+
+obj = solution()
+password = "thisisbeautiful"
+password2 = "applepiepieapple"
+res = obj.passwordStrength(password2)
+print(res)
+```
+
+#### move_Boxes
+
+- You are an amazon delivery and you have some boxes that you have to deliver, but there are some conditions -
+  - You can take 2 boxes of same weight in one round
+  - you can take 3 boxes of same weight in one round
+  - You have to find the minimum number of rounds to deliver the boxes or -1 if it is not possible to deliver them.
+
+- Example cases -
+  **Input:** boxes - [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]
+  **Output:** 4
+  **Explanation:** 3 boxes of weight 2 in 1st round, 2 boxes of weight 3 in 2nd round, 3 boxes of wt 4 in 3rd and 2 boxes of wt 4 in 4th round.
+
+- **Input:** boxes - [2, 3, 3]
+  **Output:** -1
+  **Explanation:** There is only one box with weight 2 and we can only take either 2 or 3 boxes in one round not lesser.
+
+```python
+from collections import Counter
+
+class solution:
+    def moveBoxes(self, boxes):
+        freq = Counter(boxes)    
+        ans = 0
+        
+        for key, values in freq.items():
+            if (values < 2):
+                return -1
+            
+            if (values % 3 == 0):
+                ans += values // 3
+            elif (values % 3 == 1):
+                ans += (values - 4) // 3
+                ans += 2
+            elif (values % 3 == 2):
+                ans += (values - 2) // 3
+                ans += 1
+        return ans
+                    
+boxes = [2, 2, 3, 3, 2, 4, 4, 4, 4, 4]
+boxes2 = [2, 3, 3]
+obj = solution()
+res = obj.moveBoxes(boxes2)
+print(res)
+```
+
+#### Find_Min_Health
+
+```python
+class solution:
+  def findMinHealth(self, power: List[int], armor: int) -> int:
+    return sum(power) - min(max(power), armor) + 1
+```
+
+#### Amazon_Web_Services (AWS)
+
+```python
+from typing import List
+
+class solution:
+    def awsCluster(self, bootingPower:List[int], processingPower:List[int], powerMax:int) -> int:
+        
+        # preSum = [0] * (len(processingPower) + 1)
+
+        # for i in range(0, len(processingPower)):
+        #    preSum[i+1] = preSum[i] + processingPower[i]
+        
+        # def get(l:int, r:int) -> int:
+        #    return preSum[r] - preSum[l - 1]
+        
+        if (min(processingPower) > powerMax): return 0
+
+        startIdx = 0
+        endIdx = 0
+        maxLength = 0
+        currentLength = 0
+        currentSumProcessingPower = 0
+
+        # currentSumProcessingPower = processingPower[0]
+        
+        q = [0] * 20
+        hh = 0
+        tt = -1
+ 
+        # tt+=1
+        # q[tt] = 0
+
+        while (endIdx < len(processingPower)):
+            
+            while (hh <= tt and processingPower[q[tt]] <= processingPower[endIdx]):
+                tt -= 1
+            tt += 1
+            q[tt] = endIdx
+
+            currentBootingPower = bootingPower[q[hh]]
+            currentSumProcessingPower += processingPower[endIdx]
+            currentLength = endIdx - startIdx + 1
+            currentPower = currentBootingPower + (currentSumProcessingPower) * currentLength
+
+            if (currentPower <= powerMax):
+                maxLength = endIdx - startIdx + 1
+            else:
+                # 单调递减队列队首元素是队列中值最大的且idx是最小的
+                # 弹出的元素的idx一定是小于等于单调递减队列队首元素的idx
+                # 若连队首元素的idx都无法弹出 后面队列中的就更不可能弹出了
+                # 且只有弹出队首元素才会对当前不定长的单调递减队列最大值造成影响 
+                currentSumProcessingPower -= processingPower[startIdx]
+                if (hh <= tt and q[hh] == startIdx):
+                    hh += 1
+                startIdx += 1
+            
+            endIdx += 1
+
+        return maxLength
+ 
+        
+obj = solution()
+bootingPower = [11,12,19]
+processingPower = [10,8,7]
+maxPower = 6
+res = obj.awsCluster(bootingPower, processingPower, maxPower)
+print(res) 
+```
+
+#### Packages_Merge
+
+- Consider n packages , where packageWeights[i] represents the weight of the i th package, You can combine i th and i+1 th pacage if packageWeights[i] <packageWeights[i+1] and then discard the i th package. After this operation number of packages reduces by 1 and weight of i+1 th package increases by packageWeights[i]. You can merge as many times as you want. Find the max possible weight of the package that can be achieved after any sequence of merge operations
+
+- Example:
+
+  **Input: **ipackageWeights =[2,9,10,3, 7]
+
+  **Output:** 21
+
+  **Explanation:** 
+
+  - optimal order:
+
+    iteration 1 combine packages at index 2 and 3 ->new packageWeights =[2,19,3,7]
+
+    iteration 2 combine packages at index 1 and 2 ->new packageWeights =[21,3,7]
+
+    iteration 3 combine packages at index 2 and 3 ->new packageWeights =[21,10]
+
+```python
+from typing import List
+class solution:
+    def maxPackage(self, packageWeights: List[int]) -> int:
+        stack = []
+        n = len(packageWeights)
+        ans = 0
+        stack.append(packageWeights[0])
+        for i in range(n - 2, -1, -1):
+            if (packageWeights[i] < stack[-1]):
+                stack.append(stack.pop() + packageWeights[i])
+            else:
+                stack.append(packageWeights[i])
+            ans = max(ans, stack[-1])
+        return ans
+
+obj = solution()
+arr = [2,9,10,3,7]
+res = obj.maxPackage(arr)
 print(res)
 ```
 
