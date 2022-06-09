@@ -78,6 +78,80 @@ if __name__=="__main__":
 # } Driver Code Ends
 ```
 
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return constructTree(preorder, 0, preorder.length - 1);
+    }
+    
+    public TreeNode constructTree(int[] preorder, int left, int right) {
+        if (left == right) {
+            return new TreeNode(preorder[left]);
+        }
+        if (left > right) {
+            return null;
+        }
+        
+        int rootVal = preorder[left];
+        TreeNode root = new TreeNode(rootVal, null, null);
+        int leftLastIndex = binarySearch(preorder, left+1, right, rootVal);
+        
+        root.left = constructTree(preorder, left+1, leftLastIndex);
+        root.right = constructTree(preorder, leftLastIndex+1, right);
+        
+        return root;
+    }
+    
+    public int binarySearch(int[] preorder, int left, int right, int x){
+        /*
+        
+        [2] 找到最后一个小于2的 直接会return left;
+        
+        [4] 找到最后一个小于4的 直接会return left;
+        
+        [4,2] 找到最后一个小于4的 return 1;
+        
+        [2,4] 找到最后一个小于2的 x < preorder[left] { return left - 1; }
+        
+        [3,2,4] 找到最后一个小于3的 return 1;
+        
+        
+        */
+        if (left > right) {
+            return left - 1;
+        }
+        if (x < preorder[left]) {
+            return left - 1;
+        }
+        
+        while (left < right) {
+            int mid = (left + right + 1) >> 1;
+            if (preorder[mid] < x) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+}
+```
+
 ## 复杂度分析
 * time nlogn
 * space n
