@@ -1,6 +1,9 @@
 ## 题目
 https://leetcode.cn/problems/longest-well-performing-interval/
 
+## 思路
+preSum + monotonic Stack
+
 ## Java
 ```java
 class Solution {
@@ -52,8 +55,6 @@ class Solution {
     }
 }
 ```
-
-## 思路
 
 ## 复杂度分析
 *time O(N)
