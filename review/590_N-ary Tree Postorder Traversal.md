@@ -40,9 +40,9 @@ Output: [2,6,14,11,7,3,12,8,4,13,9,10,5,1]
 
 ## Solution
 
-Language: ****
+Language: Java
 
-```
+```java
 /*
 // Definition for a Node.
 class Node {
