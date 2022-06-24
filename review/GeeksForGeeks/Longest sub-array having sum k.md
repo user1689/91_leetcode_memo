@@ -1,7 +1,7 @@
 ## 题目
 https://www.geeksforgeeks.org/longest-sub-array-sum-k/
 
-## java
+## Java
 ```java
 public class Solution {
     /**
