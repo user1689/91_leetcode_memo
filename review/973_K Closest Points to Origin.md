@@ -45,7 +45,7 @@ Explanation: The answer [[-2,4],[3,3]] would also be accepted.
 
 Language: Python
 
-```python
+```python3
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         '''
@@ -87,6 +87,33 @@ class Solution:
 ​
         '''
         
-        
-        from functools import cmp_to_key 
+
+```
+
+```java
+class Solution {
+    public int[][] kClosest(int[][] points, int k) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                int x1 = o1[0]*o1[0] + o1[1]*o1[1];
+                int x2 = o2[0]*o2[0] + o2[1]*o2[1];
+                return x1 - x2;
+            }
+        });
+        for (int i = 0; i < points.length; i++) {
+            pq.offer(points[i]);
+        }
+        int[][] res = new int[k][2];
+        int j = 0;
+        while (k > 0) {
+            int[] tmp = pq.poll();
+            res[j][0] = tmp[0];
+            res[j][1] = tmp[1];
+            j++;
+            k--;
+        }
+        return res;
+    }
+}
 ```
