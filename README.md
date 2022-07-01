@@ -1,4 +1,4 @@
-# algorithm_memo
+# 国服第一抄题仔algorithm_memo
 
 - Review >> (update constantly)    
 only contains part of leetcode questions  
@@ -10,4 +10,4 @@ base on acwing course
 
 - Daily || (pause update) 
 
-国服第一抄题仔
+
