@@ -2,10 +2,52 @@
 https://leetcode.cn/problems/longest-well-performing-interval/
 
 ## 思路
-preSum + monotonic Stack
+preSum + monotonic Stack, preSum + hashMap
 
 ## Java
 ```java
+class Solution {
+    public int longestWPI(int[] hours) {
+        /*
+        
+                [-1,-2,-3,-4,-3,-2,-1,0,1,2,3,4,5,6,5,4,3,2,1,0,-1,-2,-3,-4]
+element in map:   x  x  x  x          x x x x x x x                     
+valid ans:                [   ]
+                        [        ]
+                    [               ]
+                 [                    ]
+                 [                      ]
+                                            ...
+                     [                                           ]
+                        [                                           ] 
+                            [                                          ]
+
+        
+        */
+        
+        int n = hours.length;
+        int preSum = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        int i = 0;
+        int res = 0;
+        while (i < n) {
+            preSum += hours[i] > 8 ? 1 : -1;
+            if (preSum > 0) {
+                res = Math.max(res, i + 1);
+            } else if (map.containsKey(preSum - 1)){
+                res = Math.max(res, i - map.get(preSum - 1));
+            }
+            if (!map.containsKey(preSum)) {
+                map.put(preSum, i);
+            }
+            i++;
+        }
+        return res;
+        
+        
+    }
+}
+
 class Solution {
     public int longestWPI(int[] hours) {
         /*
