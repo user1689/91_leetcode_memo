@@ -4,6 +4,36 @@ https://leetcode-cn.com/problems/multiply-strings/
 ## 思路
 threePointers, Sort
 
+## Java
+```java
+class Solution {
+    public void sortColors(int[] nums) {
+        int zero = -1; // [i:one]
+        int n = nums.length;
+        int two = n; // [n-1:two] 
+        for (int i = 0; i < two;) {
+            if (nums[i] == 1) {
+                i++;
+            } else if (nums[i] == 2) {
+                two--;
+                swap(nums, i, two);
+            } else if (nums[i] == 0) {
+                zero++;
+                swap(nums, i, zero);
+                i++;
+            }
+        }
+        
+    }
+    
+    public void swap(int[] x, int i, int j) {
+        int tmp = x[i];
+        x[i] = x[j];
+        x[j] = tmp;
+    }
+}
+```
+
 ## python3
 ```python3
 class Solution:
