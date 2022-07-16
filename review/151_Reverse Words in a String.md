@@ -4,6 +4,41 @@ https://leetcode-cn.com/problems/reverse-words-in-a-string/
 ## 思路
 imitation
 
+##Java
+```java
+class Solution {
+    public String reverseWords(String s) {
+        // step1 trim leading space and tailing space
+        int i = 0, j = s.length() - 1;
+        while (s.charAt(i) == ' ') {
+            i++;
+        }
+        while (s.charAt(j) == ' ') {
+            j--;
+        }
+        
+        // step2 insert into deque word by word
+        StringBuilder sb = new StringBuilder();
+        Deque<String> deque = new ArrayDeque<>();
+        
+        while (i <= j) {
+            char c = s.charAt(i);
+            if (sb.length() != 0 && c == ' ') {
+                deque.offerFirst(sb.toString());
+                sb = new StringBuilder();
+            } else if (c != ' ') {
+                sb.append(s.charAt(i));
+            }
+            i++;
+        }
+        deque.offerFirst(sb.toString());
+        
+        // step3 construct ans
+        return String.join(" ", deque);
+    }
+}
+```
+
 ## python3
 ```python3
 class Solution:
