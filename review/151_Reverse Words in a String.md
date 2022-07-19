@@ -8,6 +8,66 @@ imitation
 ```java
 class Solution {
     public String reverseWords(String s) {
+        int start = 0;
+        int n = s.length();
+        int end = n - 1;
+        char[] ss = s.toCharArray();
+        // remove space
+        while (start <= end && ss[start] == ' ') {
+            start++;
+        }
+        while (start <= end && ss[end] == ' ') {
+            end--;
+        }
+        
+        swap(start, end, ss);
+        
+        int i = start, j = start;
+        int mark = start;
+        while (j <= end) {
+            
+            if (ss[j] != ' ') {
+                ss[mark++] = ss[j];
+            }
+            
+            if (j == end || ss[j] == ' ') {
+                swap(i, mark-1, ss);
+                
+                if (j == end) {
+                    break;
+                }
+                
+                ss[mark++] = ' ';
+                i = mark;
+                
+                while (ss[j] == ' ') {
+                    j++;
+                }
+                
+                j--;
+            }      
+            
+            j++;
+        }
+        return new String(ss, start, mark - start);
+
+    }
+    void swap(int i, int j, char[] ss) {
+        while (i < j) {
+            char tmp = ss[i];
+            ss[i] = ss[j];
+            ss[j] = tmp;
+            i++;
+            j--;
+        }
+        
+    }
+}
+```
+
+```java
+class Solution {
+    public String reverseWords(String s) {
         // step1 trim leading space and tailing space
         int i = 0, j = s.length() - 1;
         while (s.charAt(i) == ' ') {
