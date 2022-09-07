@@ -1,9 +1,9 @@
 # 国服第一抄题仔algorithm_memo
 
-- Review >> (update constantly)    
+- Review || (update update)    
 only contains part of leetcode questions  
 
-- Tag >> (update constantly)     
+- Tag  || (update update)     
 base on acwing course   
 
 - 91code □ (finished)
