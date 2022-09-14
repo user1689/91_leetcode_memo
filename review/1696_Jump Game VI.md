@@ -1,8 +1,9 @@
-##
+## 题目
+https://leetcode.cn/problems/jump-game-vi/
 
-##
+## 思路
 
-##java
+## java
 ```java
 class Solution {
     public int maxResult(int[] nums, int k) {
@@ -20,6 +21,7 @@ class Solution {
         return f[n - 1];
     }
 }
-
-
 ```
+## 复杂度分析
+
+## 相关题目
