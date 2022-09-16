@@ -1,4 +1,4 @@
-# 国服第一抄题仔algorithm_memo
+# algorithm_memo
 
 - Review || (update update)    
 only contains part of leetcode questions  
