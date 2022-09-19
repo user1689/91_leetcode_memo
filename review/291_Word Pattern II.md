@@ -1,5 +1,5 @@
 ## 题目
-https://leetcode.cn/problems/word-pattern-ii
+https://leetcode.cn/problems/word-pattern-ii  
 https://kennyzhuang.gitbooks.io/leetcode-lock/content/291_word_pattern_ii.html
 
 ## 思路
