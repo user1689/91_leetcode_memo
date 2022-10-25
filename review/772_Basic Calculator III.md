@@ -48,72 +48,41 @@ Output: 21
 Language: java
 
 ```java
-public class Solution {
-​
-    public static Map<Character, Integer> map = new HashMap<>(){
-        {
-            put('+', 1);
-            put('-', 1);
-            put('*', 2);
-            put('/', 2);
-        }
-    };
-​
-    public void calc(Deque<Integer> numStack, Deque<Character> opsStack) {
-        if (numStack.isEmpty() || opsStack.isEmpty()) {
-            return ;
-        }
-        int num1 = !numStack.isEmpty() ? numStack.pollLast() : 0; // divisor
-        int num2 = !numStack.isEmpty() ? numStack.pollLast() : 0; // dividend
-        char ops = opsStack.pollLast();
-        int res = 0;
-        switch(ops) {
-            case('+'):
-                res = num2 + num1;
-                break;
-            case('-'):
-                res = num2 - num1;
-                break;
-            case('*'):
-                res = num2 * num1;
-                break;
-            case('/'):
-                res = num2 / num1;
-                break;
-        }
-        // if (ops == '+') {
-        //     res = num2 + num1; 
-        // } else if (ops == '-') {
-        //     res = num2 - num1;
-        // } else if (ops == '*') {
-        //     res = num2 * num1;
-        // } else if (ops == '/') {
-        //     res = num2 / num1;
-        // }
-        numStack.offerLast(res);
-    }
-​
-    public int calculate(String s) {
-        Deque<Integer> numStack = new ArrayDeque<>();
-        Deque<Character> opsStack = new ArrayDeque<>();
-        int n = s.length();
-        numStack.offerLast(0);
-        for (int i = 0; i < n; i++) {
-            char c = s.charAt(i);
-            if (c == ' ') continue;
-            if (c == '+' || c == '-' || c == '*' || c == '/') {
-                if (i > 0 && (s.charAt(i - 1) == '(' || s.charAt(i - 1) == '+' || s.charAt(i - 1) == '-')) {
-                    numStack.offerLast(0);
-                }
-                while (!opsStack.isEmpty() && opsStack.peekLast() != '(' && map.get(opsStack.peekLast()) >= map.get(c)) {
-                    calc(numStack, opsStack);
-                }
-                opsStack.offerLast(c); // add new operation
-            } else if (c == '(') {
-                opsStack.offerLast(c);
-            } else if (c == ')') {
-                while (!opsStack.isEmpty() && opsStack.peekLast() != '(') {
-                    calc(numStack, opsStack);
-                }
-                opsStack.pollLast(); // remove (
+Deque<Integer> numStack = new ArrayDeque<>();
+        Deque<Character> opsStack = new ArrayDeque<>();
+        int n = s.length();
+        numStack.offerLast(0);
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (c == ' ') continue;
+            if (c == '+' || c == '-' || c == '*' || c == '/') {
+                if (i > 0 && (s.charAt(i - 1) == '(' || s.charAt(i - 1) == '+' || s.charAt(i - 1) == '-')) {
+                    numStack.offerLast(0);
+                }
+                while (!opsStack.isEmpty() && opsStack.peekLast() != '(' && map.get(opsStack.peekLast()) >= map.get(c)) {
+                    calc(numStack, opsStack);
+                }
+                opsStack.offerLast(c); // add new operation
+            } else if (c == '(') {
+                opsStack.offerLast(c);
+            } else if (c == ')') {
+                while (!opsStack.isEmpty() && opsStack.peekLast() != '(') {
+                    calc(numStack, opsStack);
+                }
+                opsStack.pollLast(); // remove (
+            } else {
+                int j = i;
+                int tmp = 0;
+                while (j < n && Character.isDigit(s.charAt(j))) {
+                    tmp = tmp * 10 + (s.charAt(j) - '0');
+                    j++;
+                }
+                i = j - 1;
+                numStack.offerLast(tmp);
+            }
+        }
+        while(!opsStack.isEmpty()) {
+            calc(numStack, opsStack);
+        }
+        return numStack.peekLast();
 ```
