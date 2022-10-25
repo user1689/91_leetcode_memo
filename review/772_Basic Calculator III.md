@@ -45,9 +45,9 @@ Output: 21
 
 ## Solution
 
-Language: ****
+Language: java
 
-```
+```java
 public class Solution {
 ​
     public static Map<Character, Integer> map = new HashMap<>(){
