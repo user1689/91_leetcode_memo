@@ -109,6 +109,8 @@ public class Solution {
             char c = s.charAt(i);
             if (c == ' ') continue;
             if (c == '+' || c == '-' || c == '*' || c == '/') {
+                // in order to handle case like " -9-(-1+8*20)", but in this question we do not need to handle it because all number is positive
+                // I would like to add this code here improve generality of code
                 if (i > 0 && (s.charAt(i - 1) == '(' || s.charAt(i - 1) == '+' || s.charAt(i - 1) == '-')) {
                     numStack.offerLast(0);
                 }
