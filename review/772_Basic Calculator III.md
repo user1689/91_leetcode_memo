@@ -48,7 +48,60 @@ Output: 21
 Language: java
 
 ```java
-Deque<Integer> numStack = new ArrayDeque<>();
+public class Solution {
+    /**
+     * @param s: the expression string
+     * @return: the answer
+     */ 
+
+    public static Map<Character, Integer> map = new HashMap<>(){
+        {
+            put('+', 1);
+            put('-', 1);
+            put('*', 2);
+            put('/', 2);
+        }
+    };
+
+    public void calc(Deque<Integer> numStack, Deque<Character> opsStack) {
+        if (numStack.isEmpty() || opsStack.isEmpty()) {
+            return ;
+        }
+        int num1 = !numStack.isEmpty() ? numStack.pollLast() : 0; // divisor
+        int num2 = !numStack.isEmpty() ? numStack.pollLast() : 0; // dividend
+        char ops = opsStack.pollLast();
+        int res = 0;
+        switch(ops) {
+            case('+'):
+                res = num2 + num1;
+                break;
+            case('-'):
+                res = num2 - num1;
+                break;
+            case('*'):
+                res = num2 * num1;
+                break;
+            case('/'):
+                res = num2 / num1;
+                break;
+        }
+        /*
+        if (ops == '+') {
+             res = num2 + num1; 
+         } else if (ops == '-') {
+             res = num2 - num1;
+         } else if (ops == '*') {
+             res = num2 * num1;
+         } else if (ops == '/') {
+             res = num2 / num1;
+         }
+        */
+        numStack.offerLast(res);
+    }
+
+    public int calculate(String s) {
+        // Write your code here
+        Deque<Integer> numStack = new ArrayDeque<>();
         Deque<Character> opsStack = new ArrayDeque<>();
         int n = s.length();
         numStack.offerLast(0);
@@ -85,4 +138,6 @@ Deque<Integer> numStack = new ArrayDeque<>();
             calc(numStack, opsStack);
         }
         return numStack.peekLast();
+    }
+}
 ```
