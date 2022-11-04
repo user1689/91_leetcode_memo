@@ -1,3 +1,6 @@
+Unsorted
+
+```python3
 def root(x, n):
   start = 0
   end = max(1,x)
@@ -99,6 +102,7 @@ s        m         e
 m**n
 pow(m, n) 
 """
+```
 
 
 
