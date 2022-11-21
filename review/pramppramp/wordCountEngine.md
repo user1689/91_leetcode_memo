@@ -1,3 +1,4 @@
+```
 Word Count Engine
 Implement a document scanning function wordCountEngine, which receives a string document and returns a list of all unique words in it and their number of occurrences, sorted by the number of occurrences in a descending order. If two or more words have the same count, they should be sorted according to their order in the original sentence. Assume that all letters are in english alphabet. You function should be case-insensitive, so for instance, the words “Perfect” and “perfect” should be considered the same word.
 
@@ -20,6 +21,8 @@ Constraints:
 [time limit] 5000ms
 [input] string document
 [output] array.array.string
+```
+
 ```java
 import java.io.*;
 import java.util.*;
