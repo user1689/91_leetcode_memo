@@ -34,46 +34,49 @@ import java.io.*;
 import java.util.*;
 
 class Solution {
-  static Set<String> set;
-  static Set<String> visited;
+	static Set<String> set;
+	static Set<String> visited;
 	static int shortestWordEditPath(String source, String target, String[] words) {
-		set = new HashSet<>();
-    for (String x : words) set.add(x);
-    if (!set.contains(target)) return -1;
-    visited = new HashSet<>();
-    visited.add(source); 
-    int res = dfs(source, target);
-    return res == set.size() + 1 ? -1 : res;
+	    set = new HashSet<>();
+	    for (String x : words) set.add(x);
+	    if (!set.contains(target)) return -1;
+	    visited = new HashSet<>();
+	    visited.add(source); 
+	    int res = dfs(source, target);
+	    return res == set.size() + 1 ? -1 : res;
 	}
   
-  static int dfs(String cw, String ew) {
-    if (ew.equals(cw)) {
-        return 0;
-    }
+	static int dfs(String cw, String ew) {
+		if (ew.equals(cw)) {
+			return 0;
+		}
 
-    int res = set.size() + 1;
-    for (int i = 0; i < cw.length(); i++) {
-        char[] charArr = cw.toCharArray();
-        for (int j = 0; j < 26; j++) {
-            charArr[i] = (char) (j + 'a');
-            String tmpStr = new String(charArr);
-            if (set.contains(tmpStr) && !visited.contains(tmpStr) && !tmpStr.equals(cw)) {
-                visited.add(tmpStr);
-                res = Math.min(res, dfs(tmpStr, ew) + 1); 
-                visited.remove(tmpStr);
-            }
-        }
-    }
+		int res = set.size() + 1;
+		for (int i = 0; i < cw.length(); i++) 
+		{
+			char[] charArr = cw.toCharArray();
+			for (int j = 0; j < 26; j++) 
+			{
+			    charArr[i] = (char) (j + 'a');
+			    String tmpStr = new String(charArr);
+			    if (set.contains(tmpStr) && !visited.contains(tmpStr) && !tmpStr.equals(cw)) 
+			    {
+				visited.add(tmpStr);
+				res = Math.min(res, dfs(tmpStr, ew) + 1); 
+				visited.remove(tmpStr);
+			    }
+			}
+		}
 
-    return res;
-  }
+    		return res;
+  	}
 
 	public static void main(String[] args) {
-    String source = "bit";
-    String target = "dog";
-    String[] words = new String[]{"but", "put", "big", "pot", "pog", "dog", "lot"};
-    int res = shortestWordEditPath(source, target, words);
-    System.out.println(res);
+	    String source = "bit";
+	    String target = "dog";
+	    String[] words = new String[]{"but", "put", "big", "pot", "pog", "dog", "lot"};
+	    int res = shortestWordEditPath(source, target, words);
+	    System.out.println(res);
 	}
 }
 
