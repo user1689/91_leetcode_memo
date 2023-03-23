@@ -1,7 +1,11 @@
-## topic
+## Topic
 https://www.geeksforgeeks.org/printing-longest-common-subsequence/
+https://www.techiedelight.com/?problem=LongestCommonSubsequenceII
 
-## solution
+## Solution
+DP, DFS + memorization
+
+## Java
 ```java
 /*
 
