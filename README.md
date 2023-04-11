@@ -1,9 +1,9 @@
 # algorithm_memo
 
-- Review || (update update)    
+- Review || (pause update)    
 only contains part of leetcode questions  
 
-- Tag  || (update update)     
+- Tag  || (pause update)     
 base on acwing course   
 
 - 91code □ (finished)
