@@ -1,4 +1,4 @@
-question: 
+question:  
 https://leetcode.cn/problems/longest-common-subsequence/
 
 solution:
