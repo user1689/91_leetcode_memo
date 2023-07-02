@@ -3,7 +3,7 @@ https://www.lintcode.com/problem/448/
 
 # java
 ```java
-// method 2 O(h)
+// method 1 O(h)
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
