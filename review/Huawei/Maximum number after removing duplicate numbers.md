@@ -20,3 +20,6 @@
 输出
 4533
 ```
+# memo
+- according to question, we need to remove digits which frequency is bigger than 2, so removing current digit when later digit is bigger than it, which can make number becomes bigger.
+- keeping digits which frequency is smaller or equal to 2, because this way will make the value of number at least 10 times than the value of number removed any digit.
