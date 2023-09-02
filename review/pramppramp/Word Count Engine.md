@@ -105,7 +105,7 @@ class wordCount {
 // "Practice makes perfect. you'll only get Perfect by practice. just practice!"
 ```
 
-```
+```java
 import java.io.*;
 import java.util.*;
 
@@ -123,34 +123,37 @@ class Solution {
     for (int i = 0; i < n; i++) {
       String tmpStr = strArr[i];
       String tmpAfter = filter(tmpStr);
+      if ("".equals(tmpAfter)) continue;
       counter.put(tmpAfter, counter.getOrDefault(tmpAfter, 0) + 1);
-      order.put(tmpAfter, i);
+      order.putIfAbsent(tmpAfter, i);
     }
+    System.out.println(counter);
     
     // step3 build ans array, and extract entry from map
     String[][] ans = new String[counter.size()][2];
     int idx = 0;
     for (Map.Entry<String, Integer> entry : counter.entrySet()) {
-      ans[idx][0] = String.valueOf(entry.getKey()).intern();
-      ans[idx][1] = String.valueOf(entry.getValue()).intern();
+      ans[idx][0] = String.valueOf(entry.getKey());
+      ans[idx][1] = String.valueOf(entry.getValue());
       idx++;
     }
     
     // step4 sorted it base on topic
     Arrays.sort(ans, (e1, e2) -> {
       // freq are same
-      if (e1[1] == e2[1]) {
+      if (e1[1].equals(e2[1])) {
         return Integer.valueOf(order.get(e1[0])) - Integer.valueOf(order.get(e2[0]));
       }
       return Integer.valueOf(counter.get(e2[0])) - Integer.valueOf(counter.get(e1[0]));
     });
-    for (int i = 0; i < ans.length; i++) {
-      System.out.print(Arrays.toString(ans[i]));
-    }
+    //for (int i = 0; i < ans.length; i++) {
+    //  System.out.print(Arrays.toString(ans[i]));
+    //}
     return ans;
   }
   
   static String filter(String s) {
+    //System.out.println(s);
     StringBuilder sb = new StringBuilder();
     for (char c : s.toCharArray()) {
       if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
@@ -164,8 +167,11 @@ class Solution {
       //String testStr = "you;ll's";
       //String ansStr = filter(testStr);
       //System.out.println("expected: youlls, actual:" + ansStr);
-    String document = "Practice makes perfect. you'll only get Perfect by practice. just practice!";
+    String document = "Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. ";
     String[][] ans = wordCountEngine(document);
+    for (int i = 0; i < ans.length; i++) {
+      System.out.print(Arrays.toString(ans[i]));
+    }
   }
 
 }
